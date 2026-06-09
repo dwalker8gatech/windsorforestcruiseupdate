@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Windsor Forest Takeover Cruise — Royal Caribbean 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- Top Navigation -->
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">WFTC <span class="nav-logo-year">2027</span></a>
+    <nav class="tabs" role="tablist">
+      <button class="tab-link active" data-tab="home" role="tab">Home</button>
+      <button class="tab-link" data-tab="details" role="tab">Cruise Details</button>
+    </nav>
+    <a href="#booking" class="btn btn-gold btn-sm cta-track" data-cta="nav">Talk to Agent</a>
+  </div>
+</header>
+
+<main>
+
+<!-- =====================================================
+     HOME TAB
+====================================================== -->
+<div class="tab-panel active" id="tab-home" role="tabpanel">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">Royal Caribbean &bull; <span data-cfg="ship">Utopia of the Seas</span></div>
+      <h1 class="hero-title">
+        Windsor Forest<br />
+        Takeover Cruise
+      </h1>
+      <p class="hero-sub"><em>Sailing to <span data-cfg="destinations"></span> &bull; <span data-cfg="sailDateStart"></span></em></p>
+
+      <!-- Promo video -->
+      <div class="video-wrap" id="video-wrap">
+        <div class="video-placeholder">
+          <div class="play-icon">&#9658;</div>
+          <div class="video-placeholder-text">Promo video coming soon</div>
+        </div>
+      </div>
+
+      <!-- Countdown -->
+      <div class="countdown">
+        <div class="cd-cell"><div class="cd-num" id="cd-days">000</div><div class="cd-lbl">Days</div></div>
+        <div class="cd-cell"><div class="cd-num" id="cd-hrs">00</div><div class="cd-lbl">Hrs</div></div>
+        <div class="cd-cell"><div class="cd-num" id="cd-mins">00</div><div class="cd-lbl">Mins</div></div>
+        <div class="cd-cell"><div class="cd-num" id="cd-secs">00</div><div class="cd-lbl">Secs</div></div>
+      </div>
+
+      <a href="#booking" class="btn btn-gold cta-track" data-cta="hero" data-tab-link="details">Talk to Our Cruise Agent</a>
+      <p class="hero-foot"><span class="anchor-icon">&#9875;</span> All bookings handled through Royal Caribbean</p>
+    </div>
+  </section>
+
+  <!-- Trust Block -->
+  <section class="trust-block">
+    <div class="container">
+      <div class="trust-inner">
+        <div class="trust-tag">Organized By</div>
+        <div class="trust-name" data-cfg="groupName"></div>
+        <p class="trust-text" data-cfg="groupIntroCopy"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section class="section">
+    <div class="container">
+      <div class="eyebrow center">The Experience</div>
+      <h2 class="section-title">A Takeover at Sea</h2>
+      <div class="divider"></div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3 class="card-title">The Community</h3>
+          <p class="card-text">Sail alongside the <span data-cfg="groupName"></span> community. Reconnect with familiar faces and meet new ones during group dinners, mixers, and shared excursions.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 0 20"/><path d="M12 2a15 15 0 0 0 0 20"/></svg>
+          </div>
+          <h3 class="card-title">The Destination</h3>
+          <p class="card-text">Sailing to <span data-cfg="destinations"></span>. Days of beaches, ports of call, and signature Royal Caribbean amenities.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6"/><path d="M5 13l7-5 7 5"/><path d="M3 18s2 2 5 2 4-2 7-2 4 2 6 2"/><path d="M5 13v5"/><path d="M19 13v5"/></svg>
+          </div>
+          <h3 class="card-title">The Ship</h3>
+          <p class="card-text">Sailing aboard the <span data-cfg="ship"></span>, one of Royal Caribbean's flagship vessels. World-class dining, pools, entertainment, and amenities.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ship Amenities -->
+  <section id="ship" class="section section-alt">
+    <div class="container">
+      <div class="eyebrow center">The Vessel</div>
+      <h2 class="section-title"><span data-cfg="ship"></span></h2>
+      <div class="divider"></div>
+      <p class="section-lead">
+        From specialty restaurants and Broadway-style shows to multi-deck water features and signature lounges, every day at sea brings something new.
+      </p>
+
+      <div class="grid-3 amenity-grid">
+        <div class="amenity">
+          <div class="amenity-icon">&#127869;</div>
+          <h4>Dining</h4>
+          <p>Main dining rooms, specialty restaurants, and casual eateries.</p>
+        </div>
+        <div class="amenity">
+          <div class="amenity-icon">&#127754;</div>
+          <h4>Pools &amp; Decks</h4>
+          <p>Multiple pool decks, hot tubs, and signature Royal Caribbean water features.</p>
+        </div>
+        <div class="amenity">
+          <div class="amenity-icon">&#127914;</div>
+          <h4>Entertainment</h4>
+          <p>Broadway-style productions, live music, comedy, and nightly programming.</p>
+        </div>
+      </div>
+
+      <div class="learn-more-row">
+        <button class="btn btn-outline" data-tab-link="details">See Full Cruise Details &rarr;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing -->
+  <section class="closing">
+    <div class="container">
+      <div class="quote-mark gold-text">&#10077;</div>
+      <p class="closing-quote">
+        Reconnect, celebrate, and set sail with the <span data-cfg="groupName"></span>.<br />
+        Sail dates, pricing, and booking details on the next tab.
+      </p>
+    </div>
+  </section>
+
+</div>
+
+<!-- =====================================================
+     CRUISE DETAILS TAB
+====================================================== -->
+<div class="tab-panel" id="tab-details" role="tabpanel">
+  <div class="container container-narrow">
+
+    <header class="details-header">
+      <div class="eyebrow center">Cruise Details</div>
+      <h1 class="details-title">Everything You Need to Know</h1>
+      <div class="divider"></div>
+    </header>
+
+    <!-- 5.1 Overview -->
+    <section class="cd-section">
+      <h2 class="cd-h">Overview</h2>
+      <p class="cd-lead">
+        <strong data-cfg="groupName"></strong> is sailing aboard Royal Caribbean's <strong>Utopia of the Seas</strong>, one of the largest ships afloat, on <strong data-cfg="sailDateStart"></strong>.
+      </p>
+      <p class="cd-body" data-cfg="groupIntroCopy"></p>
+      <div class="callout subtle">
+        This page is for information. All booking is handled directly by our Royal Caribbean agent so your reservation is credited to the group.
+      </div>
+    </section>
+
+    <!-- 5.2 Cruise Snapshot -->
+    <section class="cd-section">
+      <h2 class="cd-h">Cruise Snapshot</h2>
+      <table class="kv-table">
+        <tbody>
+          <tr><th>Ship</th>               <td>Utopia of the Seas</td></tr>
+          <tr><th>Sail dates</th>         <td><span data-cfg="sailDateStart"></span> to <span data-cfg="sailDateEnd"></span></td></tr>
+          <tr><th>Departs from</th>       <td data-cfg="departurePort"></td></tr>
+          <tr><th>Destinations</th>       <td data-cfg="destinations"></td></tr>
+          <tr><th>Group</th>              <td data-cfg="groupName"></td></tr>
+          <tr><th>Group booking code</th> <td data-cfg="groupCode"></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 5.3 What's Included -->
+    <section class="cd-section">
+      <h2 class="cd-h">What's Included</h2>
+      <ul class="bullet-list pos" id="cd-included"></ul>
+    </section>
+
+    <!-- 5.4 What's Not Included -->
+    <section class="cd-section">
+      <h2 class="cd-h">What's Not Included</h2>
+      <ul class="bullet-list neg" id="cd-not-included"></ul>
+    </section>
+
+    <!-- 5.5 Pricing -->
+    <section class="cd-section">
+      <h2 class="cd-h">Pricing</h2>
+      <p class="cd-body">Rates are per person, based on double occupancy.</p>
+
+      <table class="price-table">
+        <thead>
+          <tr><th>Stateroom</th><th>Starting price</th></tr>
+        </thead>
+        <tbody id="cd-pricing-rows"></tbody>
+      </table>
+
+      <div class="callout">
+        <strong>Heads up on pricing:</strong> Prices shown are current as of <span data-cfg="pricingAsOfDate"></span> and may increase. They reflect the group's reserved rate. Final pricing is confirmed at the time of booking with our agent.
+      </div>
+      <p class="cd-body">Single occupancy is <span class="inline-placeholder">[200% of the per-person rate, minus taxes for one guest, confirm with RC]</span>.</p>
+      <p class="cd-body">Triple and quadruple occupancy may be available depending on ship inventory and are priced at booking. Contact our agent.</p>
+    </section>
+
+    <!-- 5.6 Booking -->
+    <section class="cd-section" id="booking">
+      <h2 class="cd-h">How to Book</h2>
+      <p class="cd-body">Contact our Royal Caribbean agent and reference group code <strong data-cfg="groupCode"></strong>.</p>
+
+      <div class="agent-block">
+        <div class="agent-row"><span class="lbl">Agent</span><span class="val" data-cfg="agent.name"></span></div>
+        <div class="agent-row"><span class="lbl">Phone</span><a class="val link" id="cd-agent-phone" data-cfg="agent.phone"></a></div>
+        <div class="agent-row"><span class="lbl">Email</span><a class="val link" id="cd-agent-email" data-cfg="agent.email"></a></div>
+        <div class="agent-row"><span class="lbl">Group code</span><span class="val code-pill" data-cfg="groupCode"></span></div>
+      </div>
+
+      <a href="tel:" id="cd-primary-cta" class="btn btn-gold-xl cta-track" data-cta="details-booking">Talk to Our Cruise Agent</a>
+    </section>
+
+    <!-- 5.7 Cancellation -->
+    <section class="cd-section">
+      <h2 class="cd-h">Cancellation Policy</h2>
+      <p class="cd-body">Deposits are typically non-refundable. All cancellation requests must be submitted in writing to our agent.</p>
+
+      <table class="cancel-table">
+        <thead>
+          <tr><th>Days prior to sailing</th><th>Penalty</th></tr>
+        </thead>
+        <tbody id="cd-cancel-rows"></tbody>
+      </table>
+    </section>
+
+    <!-- 5.8 FAQs -->
+    <section class="cd-section">
+      <h2 class="cd-h">FAQs</h2>
+      <div class="faq-list" id="cd-faq-list"></div>
+      <div class="faq-foot">
+        Still have questions? <a href="#booking" class="gold-text cta-track" data-cta="faq-bottom">Talk to our agent.</a>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-links">
+    <a href="#" data-tab-link="home">Home</a>
+    <span>|</span>
+    <a href="#" data-tab-link="details">Cruise Details</a>
+    <span>|</span>
+    <a href="#booking">Contact Agent</a>
+  </div>
+  <div class="copyright">&copy; 2026 Windsor Forest Takeover Cruise. All bookings through Royal Caribbean.</div>
+</footer>
+
+<!-- Sticky Mobile CTA -->
+<a href="#booking" class="sticky-cta cta-track" data-cta="sticky">Talk to Cruise Agent &rarr;</a>
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
