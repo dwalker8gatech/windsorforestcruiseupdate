@@ -127,10 +127,18 @@
     }).join('');
   }
 
-  // ----- 8. Countdown -----
+  // ----- 8. Countdown (with subtle digit-flash on change) -----
   const target = new Date(cfg.sailDateStartISO || '2027-06-19T00:00:00').getTime();
   function pad(n) { return String(n).padStart(2, '0'); }
   function pad3(n) { return String(n).padStart(3, '0'); }
+  function setDigit(el, val) {
+    if (!el || el.textContent === val) return;
+    el.textContent = val;
+    el.classList.remove('flash');
+    void el.offsetWidth; // force reflow so flash retriggers
+    el.classList.add('flash');
+    setTimeout(() => el.classList.remove('flash'), 380);
+  }
   function tick() {
     const diff = target - Date.now();
     if (diff <= 0) return;
@@ -138,17 +146,83 @@
     const hrs  = Math.floor((diff / 3600000) % 24);
     const mins = Math.floor((diff / 60000) % 60);
     const secs = Math.floor((diff / 1000) % 60);
-    const d = document.getElementById('cd-days');
-    const h = document.getElementById('cd-hrs');
-    const m = document.getElementById('cd-mins');
-    const s = document.getElementById('cd-secs');
-    if (d) d.textContent = pad3(days);
-    if (h) h.textContent = pad(hrs);
-    if (m) m.textContent = pad(mins);
-    if (s) s.textContent = pad(secs);
+    setDigit(document.getElementById('cd-days'), pad3(days));
+    setDigit(document.getElementById('cd-hrs'),  pad(hrs));
+    setDigit(document.getElementById('cd-mins'), pad(mins));
+    setDigit(document.getElementById('cd-secs'), pad(secs));
   }
   tick();
   setInterval(tick, 1000);
+
+  // ----- 8b. Smooth FAQ accordion (animate native <details>) -----
+  function setupSmoothFaq() {
+    document.querySelectorAll('.faq-item').forEach(detail => {
+      const summary = detail.querySelector('summary');
+      const content = detail.querySelector('.faq-answer');
+      if (!summary || !content) return;
+
+      summary.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (detail.classList.contains('is-animating')) return;
+        const isOpen = detail.open;
+        detail.classList.add('is-animating');
+
+        if (isOpen) {
+          const startH = content.scrollHeight;
+          content.style.maxHeight = startH + 'px';
+          content.style.opacity = '1';
+          requestAnimationFrame(() => {
+            content.style.maxHeight = '0px';
+            content.style.opacity = '0';
+            content.style.paddingBottom = '0px';
+          });
+          setTimeout(() => {
+            detail.open = false;
+            content.style.maxHeight = '';
+            content.style.opacity = '';
+            content.style.paddingBottom = '';
+            detail.classList.remove('is-animating');
+          }, 320);
+        } else {
+          detail.open = true;
+          const endH = content.scrollHeight;
+          content.style.maxHeight = '0px';
+          content.style.opacity = '0';
+          content.style.paddingBottom = '0px';
+          requestAnimationFrame(() => {
+            content.style.maxHeight = endH + 'px';
+            content.style.opacity = '1';
+            content.style.paddingBottom = '';
+          });
+          setTimeout(() => {
+            content.style.maxHeight = '';
+            content.style.opacity = '';
+            detail.classList.remove('is-animating');
+          }, 320);
+        }
+      });
+    });
+  }
+  setupSmoothFaq();
+
+  // ----- 8c. Scroll-reveal for cards & sections -----
+  if ('IntersectionObserver' in window) {
+    const revealTargets = document.querySelectorAll(
+      '.card, .amenity, .price-card, .cd-section, .trust-inner, .closing-quote, .section-title, .details-title'
+    );
+    revealTargets.forEach(el => el.classList.add('reveal'));
+
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in-view');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    revealTargets.forEach(el => revealObs.observe(el));
+  }
 
   // ----- 9. Tab switching -----
   const tabLinks = document.querySelectorAll('.tab-link');
