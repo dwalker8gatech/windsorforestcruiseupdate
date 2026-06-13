@@ -511,7 +511,8 @@ img { max-width: 100%; display: block; }
 .amenity[data-has-bg="true"] {
   background-size: cover;
   background-position: center;
-  padding: 22px;
+  padding: 0;
+  min-height: 240px;
   border-color: var(--border-strong);
 }
 .amenity[data-has-bg="true"]::before {
@@ -519,15 +520,23 @@ img { max-width: 100%; display: block; }
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(8, 40, 21, 0.3) 0%, rgba(8, 40, 21, 0.45) 55%, rgba(8, 40, 21, 0.92) 100%);
+    linear-gradient(180deg, rgba(8, 40, 21, 0.15) 0%, rgba(8, 40, 21, 0.15) 55%, rgba(8, 40, 21, 0.6) 100%);
   z-index: 1;
 }
+.amenity[data-has-bg="true"] .amenity-icon {
+  position: absolute;
+  top: 16px;
+  left: 18px;
+  margin: 0;
+  z-index: 2;
+}
 .amenity[data-has-bg="true"] .amenity-body {
-  background: rgba(8, 40, 21, 0.78);
-  padding: 14px 16px;
-  border-radius: 8px;
-  margin: 0 -4px -4px;
-  backdrop-filter: blur(2px);
+  background: rgba(8, 40, 21, 0.85);
+  padding: 14px 18px 16px;
+  border-radius: 0;
+  margin: 0;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
 }
 .amenity[data-has-bg="true"] h4 { color: var(--text); }
 .amenity[data-has-bg="true"] p  { color: var(--text-soft); }

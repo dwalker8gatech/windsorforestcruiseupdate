@@ -113,7 +113,7 @@ window.cruiseConfig = {
   eventsCopy: "[EVENT_PASS_COPY]",
 
   // ----- Promo video (embed URL — leave blank to keep placeholder) -----
-  promoVideoEmbedUrl: "https://www.youtube.com/embed/y0_nhqUXLYU",
+  promoVideoEmbedUrl: "https://www.youtube-nocookie.com/embed/y0_nhqUXLYU?rel=0&modestbranding=1",
 
   // ----- Images (drop files in /assets and point keys here) -----
   // Blank string = feature OFF (default styling applies). See assets/README.md.
