@@ -534,7 +534,7 @@ img { max-width: 100%; display: block; }
   background: rgba(8, 40, 21, 0.85);
   padding: 14px 18px 16px;
   border-radius: 0;
-  margin: 0;
+  margin: auto 0 0;
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
 }
