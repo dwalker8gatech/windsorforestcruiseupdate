@@ -246,13 +246,16 @@ Everything in this list currently renders as an amber placeholder pill on the pa
 | Interior tier "from" price | `staterooms[0].priceFrom` | **Doug owes** — pulling from RC website |
 | Premium Balcony "from" price | `staterooms[2].priceFrom` | **Doug owes** — pulling from RC website |
 | Group booking code | `groupCode` | **Day of release** — RC issues when Doug formally books |
-| Hero background image (Utopia of the Seas) | n/a | **Punted** (PRD item 4) — will be a future iteration |
-| Card background images (Dining / Pools / Entertainment) | n/a | **Punted** (PRD item 5) — needs RC stock photography |
+| Promo video embed permission | `promoVideoEmbedUrl` | **Doug owes** — current video (`y0_nhqUXLYU`) returns YouTube Error 153. Owner must enable embedding in YouTube Studio, or Doug picks a different video |
+| Itinerary JPEG flyer | n/a | **Separate task** — drops into Itinerary tab when finalized |
 | Stylized "Windsor Forest Takeover Cruise" logo art | n/a | **Punted** (PRD item 5) — type-only treatment used for now |
 | Knight / castle artwork | n/a | **Tabled by Doug** — relying on green palette to carry brand |
-| Promo video embed URL | `promoVideoEmbedUrl` | If Doug provides — placeholder renders otherwise |
-| Itinerary JPEG flyer | n/a | **Separate task** — drops into Itinerary tab when finalized |
 | Analytics provider hookup | `script.js` `cta-track` handler | Choose GA or Plausible, swap the console.log body |
+
+**Recently completed:**
+- Hero background image (`assets/hero-utopia.jpg`) — wired and live
+- Amenity card backgrounds (Dining, Pools & Decks, Entertainment) — wired and live, with bottom-flush text strip
+- Photo credits for Chris Gray Faust (Coastal Kitchen) — rendered in footer
 
 ---
 
