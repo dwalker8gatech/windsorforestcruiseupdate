@@ -45,8 +45,9 @@ Local repo path (Box-synced, lowercase since the June 13 Box reorg):
 └── business-context/clients/douglas-walker/cruise-info-website/
     ├── index.html         # Page structure: nav, three tab panels, footer
     ├── styles.css         # Forest-green dark theme, all components, animations, responsive
-    ├── script.js          # Tabs, countdown, config injection, list/table rendering, FAQ smooth-collapse, scroll reveal, click tracking
+    ├── script.js          # Tabs, countdown, config injection, list/table rendering, FAQ smooth-collapse, scroll reveal, click tracking, image wiring
     ├── config.js          # Single source of truth for all variable content
+    ├── assets/            # Image files (hero + 3 amenity backgrounds) + credits.txt + asset README
     ├── README.md          # Short deploy/update note
     ├── SYSTEM_CONTEXT.md  # This file
     └── .gitignore
@@ -116,6 +117,8 @@ Anything wrapped in `[SQUARE_BRACKETS]` in `config.js` renders as a visible **am
 - Policy: `cancellation` array of `{window, penalty}`
 - FAQ: `faq` array of `{q, a}`
 - Toggles: `eventsEnabled`, `eventsCopy`, `promoVideoEmbedUrl`
+- Images: `images.{hero, amenityDining, amenityPools, amenityEntertainment}` — paths into `assets/`. Empty string = feature off, default styling applies. Populated string = JS applies the image as a background with overlay treatment.
+- Photo credits: `photoCredits` array of strings, rendered as a small italic footer line. Hidden when empty.
 
 ### What does NOT live in config
 
@@ -157,9 +160,16 @@ Cards (`.card`), amenity tiles (`.amenity`), CD-tab sections (`.cd-section`), Co
 
 ### Iconography
 
-- **No emojis anywhere on the page** (removed 2026-06-13). All icons are inline SVG with `stroke="currentColor"` so they inherit the gold accent.
+- **No emojis anywhere on the page** (removed 2026-06-13). All icons are inline SVG with `stroke="currentColor"` so they inherit the accent.
 - Experience cards: lucide-style 3-card icons (people, globe, ship)
 - Amenity cards: inline SVG fork/knife (Dining), waves (Pools), music note (Entertainment)
+
+### Photography (hero + amenity backgrounds)
+
+- Images live in `assets/` and are activated through `config.js`'s `images` block.
+- **Hero** (`hero-utopia.jpg`) — applied via `--hero-bg-url` CSS variable + `.hero-has-bg` class. Dark green gradient overlay (70-92% opacity) keeps the title legible.
+- **Amenity cards** (`amenity-dining.avif`, `amenity-pools.jpg`, `amenity-entertainment.jpg`) — each card's `[data-amenity="..."]` attribute maps to a config key. When set, the image becomes the full-bleed card background with the icon absolutely positioned top-left and a translucent dark-green strip flush at the **bottom edge** containing the title + description. (The text strip uses `margin: auto 0 0` to anchor to the bottom — `margin: 0` would clobber the base `margin-top: auto` and stick it to the top.)
+- **Credits** — `photoCredits` array in config renders as an italic line at the very bottom of the footer. `assets/credits.txt` is the running attribution log; new photos that need credit get a line there *and* an entry in the config array.
 
 ### Animations (subtle by design — user request: "nothing over the top")
 
@@ -220,6 +230,9 @@ Use this section to understand what was tried, what was kept, and *why* — so y
 14. **Events decision gate** — `cruiseConfig.eventsEnabled` defaults to `false`. Flipping to `true` adds an events FAQ and (per PRD) would introduce the only allowed external ticketing link. Get explicit sign-off before enabling.
 15. **Countdown target** — `cruiseConfig.sailDateStartISO` is `2027-06-18T00:00:00` (per RC quote).
 16. **No CTA pulse, no autoplay video, no marquee** — earlier iterations had these and were cut as too noisy for an info page.
+17. **Promo video uses `youtube-nocookie.com`** — switched from `youtube.com/embed` because the original threw YouTube Error 153 ("embedding disabled by uploader"). Nocookie sometimes routes around it. If a future video also errors out, the owner needs to enable embedding in YouTube Studio — there's no client-side fix.
+18. **Images are config-activated, never hard-coded** — paths live in `cruiseConfig.images`. An empty string keeps the feature off so the page works with or without the photos. Adding a new image-driven slot requires (a) a key in `images`, (b) a JS branch that applies it, and (c) CSS for the "with image" variant. Same pattern as the existing hero/amenity wiring.
+19. **Amenity background images use a bottom-flush strip** — when `data-has-bg="true"`, the card removes its padding, the icon is absolute top-left, the body uses `margin: auto 0 0` to push to the bottom (do NOT use `margin: 0` — it kills the base `margin-top: auto`), and a 0.85-opacity dark-green strip with a 3px backdrop blur sits at the bottom edge. Min-height 240px so the photo has room to read.
 
 ---
 
@@ -261,12 +274,13 @@ Walk through this in order on launch day:
 3. Confirm `sailDateStartISO` is correct (drives the countdown)
 4. Fill the two pending tier prices in `staterooms`
 5. Fill `groupCode` with the code RC issues
-6. Set `promoVideoEmbedUrl` if Doug delivered a video (otherwise leave blank to keep placeholder)
+6. Verify `promoVideoEmbedUrl` plays without Error 153. If Doug switched videos, swap the URL here.
 7. Decide `eventsEnabled` (default `false`)
-8. When the Itinerary JPEG arrives, drop it into the `.coming-soon` section of `#tab-itinerary` in `index.html`
-9. Open `index.html` in a browser — scan for any remaining amber placeholder pills
-10. `git commit -m "Go-live content"` and `git push`
-11. Vercel deploys; verify on the live URL
+8. Drop any new images into `assets/`, add matching paths in `images`, and append any required credits to `photoCredits` + `assets/credits.txt`
+9. When the Itinerary JPEG arrives, drop it into the `.coming-soon` section of `#tab-itinerary` in `index.html`
+10. Open `index.html` in a browser — scan for any remaining amber placeholder pills
+11. `git commit -m "Go-live content"` and `git push`
+12. Vercel deploys; verify on the live URL
 
 ---
 
