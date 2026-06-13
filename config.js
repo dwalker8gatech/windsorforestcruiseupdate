@@ -1,90 +1,117 @@
 // =============================================================
 // CRUISE SITE CONFIG — single source of truth.
-// At go-live, fill placeholders here (no markup edits needed).
 // Anything wrapped in [SQUARE_BRACKETS] renders as a visible
 // placeholder so missing content is easy to spot.
 // =============================================================
 window.cruiseConfig = {
   // ----- Group identity -----
-  groupName: "[OFFICIAL_GROUP_NAME]",
-  schoolName: "[SCHOOL_NAME]",
-  groupIntroCopy: "[GROUP_INTRO_COPY — one or two lines from the leader's voice]",
+  groupName: "Windsor Forest Takeover Cruise",
+  schoolName: "Windsor Forest",
+  groupIntroCopy: "[GROUP_INTRO_COPY — one or two lines from Doug's voice]",
 
-  // ----- Cruise basics -----
+  // ----- Cruise basics (per RC group agreement, doc 5452193) -----
   ship: "Utopia of the Seas",
   cruiseLine: "Royal Caribbean",
-  sailDateStart: "June 19, 2027",
-  sailDateStartISO: "2027-06-19T00:00:00",
-  sailDateEnd: "[RETURN_DATE — confirm 3-night vs 4-night]",
-  departurePort: "[Port Canaveral, FL — confirm]",
-  destinations: "[Nassau & Perfect Day at CocoCay, Bahamas — confirm with RC]",
+  sailDateStart: "June 18, 2027",
+  sailDateStartISO: "2027-06-18T00:00:00",
+  sailDateEnd: "June 21, 2027",
+  departurePort: "Port Canaveral, FL",
+  destinations: "3 Night Perfect Day at CocoCay & Bahamas",
 
-  // ----- Booking -----
-  groupCode: "[GROUP_CODE]",
-  pricingAsOfDate: "[DATE]",
+  // ----- Booking contact (Royal Caribbean Group Vacation Specialists) -----
+  // No dedicated agent name. Calls route through the group line.
   agent: {
-    name:  "[AGENT_NAME]",
-    phone: "[AGENT_PHONE]",
-    email: "[AGENT_EMAIL]"
+    phone: "1-800-465-3595",
+    email: "cogroupsupport@rccl.com"
   },
+  groupCode: "[GROUP_CODE — provided day of release]",
+
+  // ----- Deposit & payment -----
+  depositPerStateroom: "$200",
+  depositDueDate: "July 10, 2026",
+  finalPaymentDueDate: "April 4, 2027",
 
   // ----- Pricing (per person, double occupancy) -----
+  pricingAsOfDate: "June 13, 2026",
   staterooms: [
-    { tier: "Interior",        priceFrom: "[XXX]" },
-    { tier: "Ocean View",      priceFrom: "[XXX]" },
-    { tier: "Premium Balcony", priceFrom: "[XXX]" }
+    { tier: "Interior",        priceFrom: "[XXX — pending from Doug]" },
+    { tier: "Ocean View",      priceFrom: "$1,279" },
+    { tier: "Premium Balcony", priceFrom: "[XXX — pending from Doug]" }
   ],
+  taxesAndFees: "$107.98 per person",
+  gratuities: "$55.50 per person ($63 for suites)",
 
-  // ----- Inclusions -----
+  // ----- Inclusions (per RC group agreement) -----
   included: [
-    "Stateroom for the sail dates",
-    "Main dining and complimentary onboard eateries",
-    "Onboard entertainment, pools, and activities"
+    "Ship accommodations",
+    "Ocean transportation (tendering)",
+    "Most meals",
+    "Some non-alcoholic beverages",
+    "Most onboard entertainment"
   ],
 
-  // ----- Exclusions -----
+  // ----- Exclusions (per RC group agreement) -----
   notIncluded: [
-    "Roundtrip airfare to [Orlando / departure city]",
-    "Roundtrip transportation to [departure port]",
-    "Drink package(s)",
+    "Air transportation",
+    "Ground transportation",
+    "Shore excursions",
+    "Meals and accommodations ashore (exceptions may apply)",
+    "Select beverages and beverage packages",
+    "Photographs",
     "Gratuities",
-    "Internet packages (cheaper to pre-purchase)",
-    "Shore excursions"
+    "Telephone calls",
+    "Specialty restaurants"
   ],
 
-  // ----- Cancellation windows (recompute for sail date with RC) -----
+  // ----- Cancellation windows (per RC group agreement) -----
   cancellation: [
-    { window: "[XX to XX days prior]", penalty: "50% per passenger"  },
-    { window: "[XX to XX days prior]", penalty: "75% per passenger"  },
-    { window: "[XX to 0 days prior]",  penalty: "100% per passenger" }
+    { window: "90+ days prior",       penalty: "No charges" },
+    { window: "89 to 75 days prior",  penalty: "25% of total fare" },
+    { window: "74 to 61 days prior",  penalty: "50% of total fare" },
+    { window: "60 to 31 days prior",  penalty: "75% of total fare" },
+    { window: "30 days or less",      penalty: "100% of total fare" }
   ],
 
-  // ----- FAQ (edit or extend) -----
+  // ----- FAQ -----
   faq: [
     {
-      q: "Can I book directly with Royal Caribbean or another site and still join the group?",
-      a: "Yes. To get the reserved group rate and have your booking credited to the group, book through our agent using the group code."
+      q: "How do I book?",
+      a: "Call Royal Caribbean Group Vacation Specialists at 1-800-465-3595 (Mon-Fri 9 AM to 8 PM ET, Sat 9 AM to 6 PM ET) or email cogroupsupport@rccl.com. Reference the group code so your booking is credited to the Windsor Forest Takeover Cruise group."
+    },
+    {
+      q: "How much is the deposit?",
+      a: "$200 per stateroom. Deposits and full legal names are due by July 10, 2026 to lock in group pricing. Deposit amounts for suites may vary — refer to your individual booking invoice."
+    },
+    {
+      q: "When is final payment due?",
+      a: "Final payment is due no later than April 4, 2027. Any balance unpaid after this date may result in cancellation of all or part of the booking."
+    },
+    {
+      q: "What is the cancellation policy?",
+      a: "Cancellation fees increase as the sail date approaches: 90+ days prior — no charges; 89 to 75 days — 25% of total fare; 74 to 61 days — 50%; 60 to 31 days — 75%; 30 days or less — 100%. Taxes and fees are excluded from penalties. Travel insurance is strongly recommended."
+    },
+    {
+      q: "What are taxes, fees, and gratuities?",
+      a: "Taxes and fees are $107.98 per person. Gratuities are $55.50 per person for the full cruise ($63 for suites) and cover dining, culinary services, stateroom attendants, and behind-the-scenes hotel teams. If not pre-paid, gratuities auto-add to your SeaPass account onboard."
     },
     {
       q: "What if I want more than two people in a cabin?",
-      a: "Triple and quad cabins may be available depending on ship inventory. Contact our agent for pricing."
+      a: "Triple and quad cabins may be available depending on ship inventory. Single occupancy is 200% of the per-person rate (pre-tax and fees). Call Royal Caribbean for current rates."
     },
     {
-      q: "Is there a deposit?",
-      a: "[Confirm deposit amount and terms with RC.]"
+      q: "Are prices final?",
+      a: "Prices shown are 'from' rates current as of June 13, 2026 and may increase. They reflect the group's reserved rate. Final pricing is confirmed at time of booking with Royal Caribbean."
     },
     {
-      q: "Who do I contact with questions?",
-      a: "Our Royal Caribbean agent handles all booking and trip questions. Their contact information is in the Booking section above."
+      q: "Do I need a passport?",
+      a: "Recommended for international travel. Confirm exact ID requirements with Royal Caribbean based on the itinerary and port of embarkation."
     }
   ],
 
   // ----- Events / paid pass (decision gate) -----
-  // Set true ONLY if the cruise includes private events that require a paid pass.
-  // Flag back to owner before enabling — adds an external ticketing link.
   eventsEnabled: false,
   eventsCopy: "[EVENT_PASS_COPY]",
 
-  // ----- Promo video (leave blank to show placeholder) -----
+  // ----- Promo video (embed URL — leave blank to keep placeholder) -----
   promoVideoEmbedUrl: ""
 };

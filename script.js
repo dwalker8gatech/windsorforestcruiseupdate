@@ -1,10 +1,10 @@
 // =============================================================
 // WFTC site script
-//  - Tab switching (Home / Cruise Details), hash-synced
+//  - Tab switching (Home / Cruise Details / Itinerary), hash-synced
 //  - Config injection (data-cfg) with placeholder highlighting
 //  - Countdown timer
 //  - List/table rendering from config
-//  - Agent phone/email href wiring
+//  - Phone/email href wiring (Royal Caribbean group line)
 //  - Click tracking
 //  - Sticky CTA visibility
 // =============================================================
@@ -258,8 +258,9 @@
     });
   });
 
-  // Hash routing on load
-  if (location.hash.indexOf('tab=details') > -1) activateTab('details', { scroll: false });
+  // Hash routing on load (any tab name)
+  const tabMatch = location.hash.match(/tab=([a-z-]+)/i);
+  if (tabMatch && tabMatch[1]) activateTab(tabMatch[1], { scroll: false });
 
   // ----- 10. Click tracking -----
   document.querySelectorAll('.cta-track').forEach(el => {

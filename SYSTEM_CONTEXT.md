@@ -6,13 +6,14 @@
 
 ## 1. What this is
 
-A static marketing site for **Douglas Walker's** alumni cruise: the **Windsor Forest Takeover Cruise**, sailing aboard **Royal Caribbean's Utopia of the Seas**, **June 19, 2027** (4 nights to Bermuda, departure port TBD with Royal Caribbean).
+A static marketing site for **Douglas Walker's** alumni cruise: the **Windsor Forest Takeover Cruise**, sailing aboard **Royal Caribbean's Utopia of the Seas**, **June 18-21, 2027** — a **3-night** itinerary to Perfect Day at CocoCay and the Bahamas, departing from **Port Canaveral, FL**. Royal Caribbean group reservation no. **5452193**.
 
-Currently lives at: **[github.com/a-adomako/Windsor-forest-cruise-2](https://github.com/a-adomako/Windsor-forest-cruise-2)** (Vercel-ready static build).
+Repo: **[github.com/a-adomako/Windsor-forest-cruise-2](https://github.com/a-adomako/Windsor-forest-cruise-2)** (Vercel-ready static build, branch `main`).
 
 It is **not** a booking site. It exists for two reasons and two only:
+
 1. **Inform** visitors who clicked through from Doug's Facebook video so they feel confident.
-2. **Route** them to the assigned Royal Caribbean group agent, who handles all bookings, payment plans, and the group code.
+2. **Route** them to Royal Caribbean's Group Vacation Specialists, who handle all bookings, deposits, payment plans, and the group code.
 
 If a future change does not serve (1) or (2), it doesn't belong on this site.
 
@@ -21,65 +22,72 @@ If a future change does not serve (1) or (2), it doesn't belong on this site.
 ## 2. The client (Douglas Walker)
 
 - Group leader / cruise organizer. Wants **zero involvement in money, bookings, or customer questions**.
-- Traffic source: a Facebook video that drove ~8,000 views and ~120 teaser signups. Visitors are almost all on phones.
-- Doug supplies real content **late and in fragments**: final agent name, group code, and copy land at go-live; pricing and itinerary follow Royal Caribbean confirmation.
-
-Active context: see `[[project_jerry_brunson_active]]`-style entries in `~/.claude/projects/.../memory/` for related client work. Doug is a separate engagement.
+- Traffic source: a Facebook video that drove ~8,000 views and ~120 teaser signups. Visitors are overwhelmingly on phones.
+- Doug supplies real content **late and in fragments**: group code lands the day he books with RC; tier prices come from Doug once he pulls them from RC's site.
 
 ---
 
 ## 3. The two hard constraints driving the build
 
-1. **No booking actions.** No checkout, no cart, no payment, no "buy pass" link. Every CTA on the page routes to the Royal Caribbean group agent. The only permitted exception is a paid event-pass link, gated behind `cruiseConfig.eventsEnabled` and only enabled with explicit owner sign-off.
+1. **No booking actions on-site.** No checkout, cart, payment, or "buy pass" link. Every CTA on the page routes to the Royal Caribbean group line. The only permitted exception is a paid event-pass link, gated behind `cruiseConfig.eventsEnabled` — never enable without explicit owner sign-off.
 2. **Content arrives late and changes.** Hence the config-driven architecture (see §6). The site is built to be swappable in one file, not rebuilt.
 
-A third soft constraint: **mobile-first.** Traffic is overwhelmingly Facebook-on-phone. The CSS reflows tables to stacked label/value rows under 900px, hides desktop nav links, and shows a sticky bottom CTA bar.
+Soft constraint: **mobile-first.** Traffic is overwhelmingly Facebook-on-phone. The CSS reflows tables to stacked label/value rows under 900px, hides desktop nav links into a second row, and shows a sticky bottom CTA bar.
 
 ---
 
 ## 4. File structure
 
+Local repo path (Box-synced, lowercase since the June 13 Box reorg):
+
 ```
-cruise-info-website/
-├── index.html      # Page structure: nav, Home tab, Cruise Details tab, footer
-├── styles.css      # Dark-olive theme, all components, animations, responsive
-├── script.js       # Tabs, countdown, config injection, list/table rendering, FAQ smooth-collapse, scroll reveal, click tracking
-├── config.js       # Single source of truth for all variable content
-├── README.md       # Short deploy/update note
-├── SYSTEM_CONTEXT.md  # This file
-└── .gitignore
+/Users/adomako/Library/CloudStorage/Box-Box/Pantheon_Workspace/
+└── business-context/clients/douglas-walker/cruise-info-website/
+    ├── index.html         # Page structure: nav, three tab panels, footer
+    ├── styles.css         # Forest-green dark theme, all components, animations, responsive
+    ├── script.js          # Tabs, countdown, config injection, list/table rendering, FAQ smooth-collapse, scroll reveal, click tracking
+    ├── config.js          # Single source of truth for all variable content
+    ├── README.md          # Short deploy/update note
+    ├── SYSTEM_CONTEXT.md  # This file
+    └── .gitignore
 ```
+
+> **Box quirk:** Box client sync may also expose this path with capital-B "Business Context" and a `(aarontabi@gmail.com)` suffix. The **lowercase path above** is the canonical git repo. Always work there.
 
 No build step. No bundler. No dependencies. Vercel auto-detects as static; output dir is the repo root.
 
 ---
 
-## 5. Page architecture — two tabs
+## 5. Page architecture — three tabs
 
-Top nav has a pill-shaped tab switcher: **Home** | **Cruise Details**. Switching is JS-based (CSS class toggle), hash-synced via `#tab=details`. Tabs were chosen over a single long scroll because the PRD designates the dense info as its own component, and because it keeps the Home view emotional/lean while the Details view is the "everything you need to know" reference.
+Top nav has a pill-shaped tab switcher: **Home** | **Cruise Details** | **Itinerary**. Switching is JS-based (CSS class toggle), hash-synced via `#tab=<name>`. Tabs were chosen over a single long scroll because the PRD designates the dense info as its own component, and because it keeps the Home view emotional/lean while the Details view is the "everything you need to know" reference.
 
 ### 5.1 Home tab (`#tab-home`)
 
 Vibe-and-emotion layer. Order:
 
-1. **Hero** — title, sailing date line, video placeholder (replace via `cruiseConfig.promoVideoEmbedUrl`), countdown (Days/Hrs/Mins/Secs), primary "Talk to Our Cruise Agent" CTA.
-2. **Trust block** — "Organized by [groupName]" plus a one-line intro in the leader's voice. Strangers from Facebook need this before they trust the agent route.
-3. **Experience cards** (3-up) — Community, Destination, Ship. Generic alumni-cruise framing.
-4. **Ship/amenities** (3-up, condensed) — Dining, Pools & Decks, Entertainment. Includes a "See Full Cruise Details →" button that switches tabs.
+1. **Hero** — title, sail date line, video placeholder (replace via `cruiseConfig.promoVideoEmbedUrl`), countdown (Days/Hrs/Mins/Secs), primary "Book Now" CTA, "All bookings handled directly through Royal Caribbean" footnote.
+2. **Trust block** — "Organized by [groupName]" + one-line intro in the leader's voice. Strangers from Facebook need this before they trust the RC route.
+3. **Experience cards** (3-up, SVG icons) — The Community, The Destination, The Ship.
+4. **Ship/amenities** (3-up, SVG icons) — Dining, Pools & Decks, Entertainment. Includes a "See Full Cruise Details →" button that switches tabs.
 5. **Closing** — italic invitation line.
 
 ### 5.2 Cruise Details tab (`#tab-details`)
 
-Reference document. Sections must stay in this exact order (the PRD specifies it):
+Reference document. Sections must stay in this exact order (PRD-mandated):
 
-1. **Overview** — `[groupName]` is sailing aboard Utopia of the Seas on `[sailDateStart]`, optional group intro line, plus the boilerplate "this page is for information…" disclaimer.
-2. **Cruise Snapshot** — key/value table: Ship, Sail dates, Departs from, Destinations, Group, Group booking code.
+1. **Overview** — `[groupName]` is sailing aboard Utopia of the Seas on `[sailDateStart]`, optional group intro line, plus the "this page is for information…" disclaimer.
+2. **Cruise Snapshot** — key/value table: Ship, Sail dates, Departs from, Destinations, Group, Group booking code, **Deposit**, **Final payment due**.
 3. **What's Included** — checkmark list from `cruiseConfig.included`.
 4. **What's Not Included** — × list from `cruiseConfig.notIncluded`.
-5. **Pricing** — "From $X" table built from `cruiseConfig.staterooms`, plus a yellow callout about rates current as of `pricingAsOfDate` and subject to change, plus the single-occupancy and triple/quad lines.
-6. **How to Book** — agent name/phone/email/group code in a block, then the big primary CTA. This is the conversion event.
-7. **Cancellation Policy** — note about non-refundable deposits + window/penalty table from `cruiseConfig.cancellation`.
+5. **Pricing** — "From $X" table built from `cruiseConfig.staterooms`, plus a callout that surfaces `pricingAsOfDate`, **taxes & fees**, and **gratuities**, plus the single-occupancy (200%) and triple/quad lines.
+6. **How to Book** — phone, email, group code in a block, then the big primary CTA. This is the conversion event.
+7. **Cancellation Policy** — note + window/penalty table from `cruiseConfig.cancellation` (sourced from RC group agreement).
 8. **FAQs** — accordion rendered from `cruiseConfig.faq`. Conditional events FAQ appears only when `cruiseConfig.eventsEnabled === true`.
+
+### 5.3 Itinerary tab (`#tab-itinerary`)
+
+Currently a **"Coming Soon"** placeholder with the broad strokes: depart Port Canaveral June 18, 3 nights at sea to CocoCay/Bahamas, return June 21. When Doug delivers the JPEG flyer (à la the FAMU/Rattler 2026 cruise), it drops into the `.coming-soon` section as the only content.
 
 ---
 
@@ -95,14 +103,15 @@ The single most important architectural decision. Every value that could change 
 
 ### Placeholder convention
 
-Anything wrapped in `[SQUARE_BRACKETS]` in `config.js` renders as a visible yellow-highlighted pill on the page (`.placeholder` or `.inline-placeholder` class). This makes missing content impossible to miss before go-live. **Do not remove the brackets convention** — Doug's content arrives in pieces and the visible-placeholder system is how we prevent shipping with blanks.
+Anything wrapped in `[SQUARE_BRACKETS]` in `config.js` renders as a visible **amber-highlighted pill** on the page (`.placeholder` / `.inline-placeholder`). The amber is intentional — it pops against the forest-green palette so missing content is impossible to miss before go-live. **Do not remove the brackets convention** or recolor the amber pill into the green scheme.
 
-### What lives in config
+### What lives in config (current keys)
 
 - Identity: `groupName`, `schoolName`, `groupIntroCopy`
 - Cruise basics: `ship`, `cruiseLine`, `sailDateStart`, `sailDateStartISO` (drives countdown), `sailDateEnd`, `departurePort`, `destinations`
-- Booking: `groupCode`, `pricingAsOfDate`, `agent.{name,phone,email}`
-- Pricing: `staterooms` array of `{tier, priceFrom}`
+- Booking contact: `agent.phone`, `agent.email`, `groupCode` (no `agent.name` — the group line is not a named agent)
+- Deposit/payment: `depositPerStateroom`, `depositDueDate`, `finalPaymentDueDate`
+- Pricing: `staterooms` array of `{tier, priceFrom}`, `pricingAsOfDate`, `taxesAndFees`, `gratuities`
 - Lists: `included`, `notIncluded`
 - Policy: `cancellation` array of `{window, penalty}`
 - FAQ: `faq` array of `{q, a}`
@@ -110,36 +119,47 @@ Anything wrapped in `[SQUARE_BRACKETS]` in `config.js` renders as a visible yell
 
 ### What does NOT live in config
 
-Marketing copy on the Home tab (hero subtitle, experience card descriptions, closing quote) is hard-coded in `index.html` because it's structural framing, not variable content. If Doug requests copy changes there, edit the HTML.
+Marketing copy on the Home tab (hero subtitle, experience card descriptions, closing quote, "Coming Soon" copy on Itinerary) is hard-coded in `index.html` because it's structural framing, not variable content. If Doug requests copy changes there, edit the HTML.
 
 ---
 
 ## 7. Design system
 
-### Palette (dark olive)
+### Palette (forest green — Windsor Forest school colors, per Doug's spec on 2026-06-13)
 
-The user explicitly chose `#1e2411` over the original blue reference; light mode was tried once and rejected. **Do not flip to light mode without explicit re-approval.**
+The user picked the dark forest green for the background and pale cream-green for text. **Placeholders intentionally remain amber/gold** to pop against the green field. Do not flip to light mode or revert to the prior olive/gold theme without explicit re-approval.
 
 ```
---bg          #1e2411   page background
---bg-soft     #262d17   card surfaces, section alternation
---bg-deep     #161a0c   hero alt, video placeholder
---border      #3a4225   subtle dividers
---text        #f3f1e6   primary cream text
---text-muted  #a7a791   secondary copy
---gold        #f5c842   accent — eyebrows, dividers, prices, CTAs
---gold-bright #ffd86b   hover / brighter accent
---gold-deep   #d4a727   gradient base for buttons
+--bg            #0C401E   deep forest — page background
+--bg-soft       #0F4D24   card surfaces, section alternation
+--bg-deep       #082815   hero alt, video placeholder, footer
+--border        #1f5b32   subtle dividers
+--text          #ECF2BD   pale cream-green — primary copy
+--text-soft     #DAE3A4   slightly muted body
+--text-muted    #89A65D   sage — secondary copy
+--text-dim      #6b8442   tertiary / disabled
+--gold          #ECF2BD   accent (eyebrows, dividers, prices, CTAs use this as the "highlight")
+--gold-bright   #f5f9d4   button gradient start
+--gold-deep     #c5d09a   button gradient end
+--btn-text      #0C401E   dark forest — text color on pale-cream buttons
 ```
+
+The five Windsor Forest hex values supplied by Doug were `#077336 #0C401E #0B8C2B #89A65D #ECF2BD`. The first and last became bg/text; the others are derivable via the sage muted-text and the brighter green hover treatments.
 
 ### Type
 
-- Headings/title: **Cormorant Garamond** (serif, 500–700)
-- Body/UI: **Inter** (sans, 300–700)
+- Headings/title: **Cormorant Garamond** (serif, 500-700)
+- Body/UI: **Inter** (sans, 300-700)
 
 ### Components
 
-Cards (`.card`), price tiles (`.price-card`), CD-tab sections (`.cd-section`), tables (`.kv-table`, `.price-table`, `.cancel-table`), agent block (`.agent-block`), callouts (`.callout`, `.callout.subtle`), FAQ accordion (`.faq-item` + native `<details>`), sticky CTA (`.sticky-cta`).
+Cards (`.card`), amenity tiles (`.amenity`), CD-tab sections (`.cd-section`), Coming Soon panel (`.coming-soon`), tables (`.kv-table`, `.price-table`, `.cancel-table`), agent block (`.agent-block`), callouts (`.callout`, `.callout.subtle`), FAQ accordion (`.faq-item` + native `<details>`), sticky CTA (`.sticky-cta`), tab pills (`.tab-link`).
+
+### Iconography
+
+- **No emojis anywhere on the page** (removed 2026-06-13). All icons are inline SVG with `stroke="currentColor"` so they inherit the gold accent.
+- Experience cards: lucide-style 3-card icons (people, globe, ship)
+- Amenity cards: inline SVG fork/knife (Dining), waves (Pools), music note (Entertainment)
 
 ### Animations (subtle by design — user request: "nothing over the top")
 
@@ -152,98 +172,125 @@ Cards (`.card`), price tiles (`.price-card`), CD-tab sections (`.cd-section`), t
 
 ### Responsive breakpoints
 
-One breakpoint: 900px. Below it: grids collapse to single column, nav links hide and tab pills move to a second row, sticky CTA appears, tables reflow to stacked label/value cards using `td[data-label]`.
+One breakpoint: **900px**. Below it: grids collapse to single column, nav tab pills move to a second row, the full Windsor Forest logo shrinks, sticky CTA appears, tables reflow to stacked label/value cards using `td[data-label]`.
 
 ---
 
-## 8. Decisions log
+## 8. Booking & policy data (from RC group agreement, doc 5452193)
+
+These values are baked into `config.js` and reflect Royal Caribbean's confirmed terms for this group:
+
+- **Group reservation no.** 5452193
+- **Sail date** June 18, 2027 (3-night, return June 21)
+- **Ship** Utopia of the Seas
+- **Itinerary** 3 Night Perfect Day at CocoCay & Bahamas
+- **Departure** Port Canaveral, FL
+- **Deposit** $200 per stateroom, due **July 10, 2026**
+- **Final payment** due **April 4, 2027**
+- **Taxes & fees** $107.98 per person
+- **Gratuities** $55.50 per person ($63 for suites). Auto-added to SeaPass onboard if not pre-paid.
+- **Single occupancy** 200% of per-person rate (pre-tax and fees)
+- **Cancellation schedule** 90+ days: no charge / 89-75: 25% / 74-61: 50% / 60-31: 75% / 30 or less: 100%
+- **Booking phone** 1-800-465-3595 (Group Vacation Specialists)
+  - Hours: Mon-Fri 9 AM-8 PM ET, Sat 9 AM-6 PM ET
+- **Group inbox** cogroupsupport@rccl.com (no dedicated agent name — calls route through the group line)
+- **Quoted reference price** $1,279 / double-occupancy Ocean View Balcony (per RC quote). Other tiers pending from Doug.
+
+If the RC group agreement is reissued, replace these values in `config.js`.
+
+---
+
+## 9. Decisions log
 
 Use this section to understand what was tried, what was kept, and *why* — so you don't reverse a deliberate call.
 
-1. **Cloned visual structure from the Norfolk Takeover Cruise site** (per Doug's reference) but rewrote all copy to be original/placeholder for this client. Don't reintroduce the source site's marketing copy.
-2. **Dark olive theme, not blue** — Doug's school color is olive. The original swap was `#1e2411`. A light-mode build was attempted (per a PRD revision) and explicitly rejected by the user. Stay dark.
-3. **Two tabs, not one long page** — Home stays emotional and lean; Cruise Details is the reference. Switch via JS, hash-synced.
+1. **Cloned visual structure from a reference site Doug favored** (Norfolk Takeover Cruise) but rewrote all copy to be original/placeholder for this client. Don't reintroduce the reference site's marketing copy.
+2. **Dark forest green theme** — Windsor Forest school colors per Doug. The early dark-olive build was the first iteration; light mode was tried once and rejected. Stay on forest green.
+3. **Three tabs (Home / Cruise Details / Itinerary)** — Home stays emotional and lean; Cruise Details is the reference; Itinerary is a Coming Soon placeholder that will receive a JPEG flyer.
 4. **Config-driven everything** — content arrives late; the HTML must not block updates. Adding new variable content? Put it in `config.js` and wire `data-cfg` in HTML, never hard-code.
-5. **One CTA wording: "Talk to Our Cruise Agent"** — repeated at hero, after each pricing tier, in the booking block, and as the sticky mobile bar. Do not introduce competing CTAs (no "Buy Now", no "Reserve"). The PRD calls this out specifically.
-6. **No sponsorship section, no booking-policies section** — removed in the rebuild. These existed in earlier drafts and were cut because they didn't serve inform-or-route.
-7. **"From $X" pricing only, never fixed prices** — Royal Caribbean controls rates and they move. The yellow callout under the pricing table states this. Don't add fixed totals.
-8. **Promo video kept as a placeholder slot** — Doug confirmed on call he wanted to keep it. If `cruiseConfig.promoVideoEmbedUrl` is blank, a "Promo video coming soon" placeholder shows.
-9. **Click tracking wired but no analytics provider** — every CTA has `data-cta="…"` and `class="cta-track"`. The handler in `script.js` currently logs to console. Replace the body with `gtag(…)` or `plausible(…)` when an analytics tool is chosen.
-10. **Sticky mobile CTA hides when the booking section is in view** — IntersectionObserver on `#booking` toggles opacity. Prevents the bar covering the CTA it's pointing to.
-11. **Events decision gate** — `cruiseConfig.eventsEnabled` defaults to `false`. Flipping to `true` adds an events FAQ and (per PRD) would introduce the only allowed external ticketing link. Get explicit sign-off before enabling.
-12. **Countdown target** — driven by `cruiseConfig.sailDateStartISO`. Currently `2027-06-19T00:00:00`. An earlier 2026 test value was overwritten when the spec confirmed 2027.
-13. **No CTA pulse / no autoplay video / no marquee** — earlier iterations had a scrolling marquee and considered an attention-grabbing pulse. Both were cut as too noisy for an info page.
+5. **One CTA wording: "Book Now"** — replaces the earlier "Talk to Our Cruise Agent" everywhere (nav, hero, booking block, sticky bar, FAQ foot, footer, itinerary footer). Per Doug, "Book Now" converts better even though the action is to call RC. Do not introduce competing CTAs.
+6. **No on-page booking, sponsorship, or fixed prices** — site routes to RC for everything money-related.
+7. **"From $X" pricing only, never fixed prices** — Royal Caribbean controls rates and they move. The pricing callout warns rates may rise.
+8. **No dedicated agent name** — the RC group line is shared; there isn't one named specialist. Don't reintroduce an `agent.name` row in the booking block.
+9. **Promo video kept as a placeholder slot** — Doug confirmed on call he wanted to keep it. If `cruiseConfig.promoVideoEmbedUrl` is blank, the "Promo video coming soon" placeholder shows.
+10. **No emojis** — replaced amenity emoji icons with inline SVG. Cleaner / more professional per Doug's spec on the June 13 call.
+11. **Placeholders stay amber, not green** — they're meant to look like missing content against the green palette. Recoloring them into the green scheme would defeat the safety net.
+12. **Click tracking wired but no analytics provider** — every CTA has `data-cta="…"` and `class="cta-track"`. The handler in `script.js` currently logs to console. Replace with `gtag(…)` or `plausible(…)` when chosen.
+13. **Sticky mobile CTA hides when the booking section is in view** — IntersectionObserver on `#booking` toggles opacity. Prevents the bar covering the CTA it's pointing to.
+14. **Events decision gate** — `cruiseConfig.eventsEnabled` defaults to `false`. Flipping to `true` adds an events FAQ and (per PRD) would introduce the only allowed external ticketing link. Get explicit sign-off before enabling.
+15. **Countdown target** — `cruiseConfig.sailDateStartISO` is `2027-06-18T00:00:00` (per RC quote).
+16. **No CTA pulse, no autoplay video, no marquee** — earlier iterations had these and were cut as too noisy for an info page.
 
 ---
 
-## 9. Open inputs (Doug still owes us)
+## 10. Open inputs (what's still outstanding)
 
-Everything in this list currently renders as a yellow placeholder pill on the page. None blocks ship, but they all block "feels real."
+Everything in this list currently renders as an amber placeholder pill on the page. None blocks ship, but they all block "feels real."
 
-| Field | Config key | When expected |
+| Field | Config key | Status / Source |
 |---|---|---|
-| Official group name | `groupName` | From Doug |
-| School name | `schoolName` | From Doug |
-| Group intro line | `groupIntroCopy` | From Doug |
-| Return date (3 vs 4 night) | `sailDateEnd` | From Royal Caribbean test group |
-| Departure port | `departurePort` | From RC |
-| Destinations / ports | `destinations` | From RC |
-| Per-tier "from" prices | `staterooms[].priceFrom` | From RC test group |
-| Pricing-as-of date | `pricingAsOfDate` | At publish |
-| Single-occupancy rule | (inline placeholder in HTML pricing section) | Confirm with RC |
-| Cancellation windows | `cancellation[]` | From RC |
-| Deposit terms | FAQ #3 | From RC |
-| Agent name, phone, email | `agent.{name,phone,email}` | Day of go-live |
-| Group booking code | `groupCode` | Day of go-live |
-| Promo video embed URL | `promoVideoEmbedUrl` | If Doug provides |
+| Group intro line (Doug's voice) | `groupIntroCopy` | **Doug owes** — copy for Overview / Trust block |
+| Interior tier "from" price | `staterooms[0].priceFrom` | **Doug owes** — pulling from RC website |
+| Premium Balcony "from" price | `staterooms[2].priceFrom` | **Doug owes** — pulling from RC website |
+| Group booking code | `groupCode` | **Day of release** — RC issues when Doug formally books |
+| Hero background image (Utopia of the Seas) | n/a | **Punted** (PRD item 4) — will be a future iteration |
+| Card background images (Dining / Pools / Entertainment) | n/a | **Punted** (PRD item 5) — needs RC stock photography |
+| Stylized "Windsor Forest Takeover Cruise" logo art | n/a | **Punted** (PRD item 5) — type-only treatment used for now |
+| Knight / castle artwork | n/a | **Tabled by Doug** — relying on green palette to carry brand |
+| Promo video embed URL | `promoVideoEmbedUrl` | If Doug provides — placeholder renders otherwise |
+| Itinerary JPEG flyer | n/a | **Separate task** — drops into Itinerary tab when finalized |
+| Analytics provider hookup | `script.js` `cta-track` handler | Choose GA or Plausible, swap the console.log body |
 
 ---
 
-## 10. Deployment
+## 11. Deployment
 
 - **Repo:** [github.com/a-adomako/Windsor-forest-cruise-2](https://github.com/a-adomako/Windsor-forest-cruise-2), `main` branch
 - **Host:** Vercel (static, no build step). Connect the repo at vercel.com/new → Framework: Other → no build command → output dir: `./`
-- **Local preview:** `python3 -m http.server 8000` from this folder, then open `localhost:8000`
+- **Local preview:** `python3 -m http.server 8000` from the repo root, then open `localhost:8000`
 - **Updates:** edit `config.js` → commit → push to `main` → Vercel redeploys automatically
 
 ---
 
-## 11. How to update content at go-live
+## 12. How to update content at go-live
 
 Walk through this in order on launch day:
 
 1. Open `config.js`
-2. Replace every `[BRACKETED_PLACEHOLDER]` with the real value
-3. Set `pricingAsOfDate` to today's date
-4. Fill `agent.name`, `agent.phone`, `agent.email`, `groupCode`
-5. Confirm `sailDateStartISO` is correct (drives the countdown)
-6. Add `promoVideoEmbedUrl` if Doug delivered a video (otherwise leave blank to keep placeholder)
+2. Replace every `[BRACKETED_PLACEHOLDER]` with the real value (scan with: `grep -n "\[" config.js`)
+3. Confirm `sailDateStartISO` is correct (drives the countdown)
+4. Fill the two pending tier prices in `staterooms`
+5. Fill `groupCode` with the code RC issues
+6. Set `promoVideoEmbedUrl` if Doug delivered a video (otherwise leave blank to keep placeholder)
 7. Decide `eventsEnabled` (default `false`)
-8. Open `index.html` in a browser — scan for any remaining yellow placeholder pills
-9. `git commit -m "Go-live content"` and `git push`
-10. Vercel deploys; verify on the live URL
+8. When the Itinerary JPEG arrives, drop it into the `.coming-soon` section of `#tab-itinerary` in `index.html`
+9. Open `index.html` in a browser — scan for any remaining amber placeholder pills
+10. `git commit -m "Go-live content"` and `git push`
+11. Vercel deploys; verify on the live URL
 
 ---
 
-## 12. Things future-you should NOT do without re-approval
+## 13. Things future-you should NOT do without re-approval
 
 - Flip to light mode (rejected once)
-- Add a second CTA wording or destination (dilutes the one routing action)
+- Revert the green palette to olive/gold (the prior theme — rejected in favor of school colors)
+- Add a second CTA wording or destination (dilutes "Book Now")
 - Add a checkout, cart, payment, or pricing-with-tax breakdown (Doug doesn't handle money)
-- Hard-code agent name, group code, or prices into HTML (defeats the swap-mechanism)
-- Remove the placeholder-pill highlighting (it's the safety net before go-live)
-- Reintroduce booking-policies, sponsorship, marquee, or autoplaying media
-- Switch the typography pair without checking — Cormorant + Inter is intentional pairing for premium-but-accessible
+- Hard-code agent name, group code, or prices into HTML (defeats the swap mechanism)
+- Reintroduce an `agent.name` field — RC group line is not a named specialist
+- Recolor placeholder pills into the green palette (they're amber for a reason)
+- Bring back emojis or use auto-playing video / marquee scrolling text
+- Switch the typography pair without checking — Cormorant + Inter is the intentional pairing
 
 ---
 
-## 13. Quick orientation for the next LLM
+## 14. Quick orientation for the next LLM
 
 If you've just been handed this repo:
 
-1. Skim §1–§3 for what this serves
+1. Skim §1-§3 for what this serves
 2. Read §6 (config model) before touching content
-3. Read §7 (palette + animations) before touching CSS
-4. Read §8 (decisions) before "improving" anything
-5. Open the site locally and click both tabs to feel the structure
-6. When in doubt, ask: "Does this change help visitors get informed or routed to the agent?" If no, don't ship it.
+3. Read §7 (palette) and §8 (RC policy data) before touching CSS or copy
+4. Read §9 (decisions) before "improving" anything
+5. Open the site locally and click all three tabs to feel the structure
+6. When in doubt, ask: "Does this change help visitors get informed or routed to RC?" If no, don't ship it.

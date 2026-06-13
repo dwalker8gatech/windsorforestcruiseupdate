@@ -14,12 +14,16 @@
 <!-- Top Navigation -->
 <header class="nav">
   <div class="nav-inner">
-    <a href="#" class="nav-logo">WFTC <span class="nav-logo-year">2027</span></a>
+    <a href="#" class="nav-logo">
+      <span class="logo-primary">Windsor Forest</span>
+      <span class="logo-secondary">Takeover Cruise <span class="nav-logo-year">2027</span></span>
+    </a>
     <nav class="tabs" role="tablist">
       <button class="tab-link active" data-tab="home" role="tab">Home</button>
       <button class="tab-link" data-tab="details" role="tab">Cruise Details</button>
+      <button class="tab-link" data-tab="itinerary" role="tab">Itinerary</button>
     </nav>
-    <a href="#booking" class="btn btn-gold btn-sm cta-track" data-cta="nav">Talk to Agent</a>
+    <a href="#booking" class="btn btn-gold btn-sm cta-track" data-cta="nav">Book Now</a>
   </div>
 </header>
 
@@ -56,8 +60,8 @@
         <div class="cd-cell"><div class="cd-num" id="cd-secs">00</div><div class="cd-lbl">Secs</div></div>
       </div>
 
-      <a href="#booking" class="btn btn-gold cta-track" data-cta="hero" data-tab-link="details">Talk to Our Cruise Agent</a>
-      <p class="hero-foot"><span class="anchor-icon">&#9875;</span> All bookings handled through Royal Caribbean</p>
+      <a href="#booking" class="btn btn-gold cta-track" data-cta="hero" data-tab-link="details">Book Now</a>
+      <p class="hero-foot">All bookings handled directly through Royal Caribbean</p>
     </div>
   </section>
 
@@ -119,17 +123,23 @@
 
       <div class="grid-3 amenity-grid">
         <div class="amenity">
-          <div class="amenity-icon">&#127869;</div>
+          <div class="amenity-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><line x1="7" y1="2" x2="7" y2="22"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3v7"/></svg>
+          </div>
           <h4>Dining</h4>
           <p>Main dining rooms, specialty restaurants, and casual eateries.</p>
         </div>
         <div class="amenity">
-          <div class="amenity-icon">&#127754;</div>
+          <div class="amenity-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>
+          </div>
           <h4>Pools &amp; Decks</h4>
           <p>Multiple pool decks, hot tubs, and signature Royal Caribbean water features.</p>
         </div>
         <div class="amenity">
-          <div class="amenity-icon">&#127914;</div>
+          <div class="amenity-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          </div>
           <h4>Entertainment</h4>
           <p>Broadway-style productions, live music, comedy, and nightly programming.</p>
         </div>
@@ -174,7 +184,7 @@
       </p>
       <p class="cd-body" data-cfg="groupIntroCopy"></p>
       <div class="callout subtle">
-        This page is for information. All booking is handled directly by our Royal Caribbean agent so your reservation is credited to the group.
+        This page is for information. All booking is handled directly by Royal Caribbean Group Vacation Specialists so your reservation is credited to the group.
       </div>
     </section>
 
@@ -189,6 +199,8 @@
           <tr><th>Destinations</th>       <td data-cfg="destinations"></td></tr>
           <tr><th>Group</th>              <td data-cfg="groupName"></td></tr>
           <tr><th>Group booking code</th> <td data-cfg="groupCode"></td></tr>
+          <tr><th>Deposit</th>            <td><span data-cfg="depositPerStateroom"></span> per stateroom &nbsp;&bull;&nbsp; due <span data-cfg="depositDueDate"></span></td></tr>
+          <tr><th>Final payment due</th>  <td data-cfg="finalPaymentDueDate"></td></tr>
         </tbody>
       </table>
     </section>
@@ -218,31 +230,30 @@
       </table>
 
       <div class="callout">
-        <strong>Heads up on pricing:</strong> Prices shown are current as of <span data-cfg="pricingAsOfDate"></span> and may increase. They reflect the group's reserved rate. Final pricing is confirmed at the time of booking with our agent.
+        <strong>Heads up on pricing:</strong> Prices shown are "from" rates current as of <span data-cfg="pricingAsOfDate"></span> and may increase. They reflect the group's reserved rate. Taxes and fees are <strong data-cfg="taxesAndFees"></strong>. Gratuities are <strong data-cfg="gratuities"></strong>, auto-added to your SeaPass account onboard if not pre-paid. Final pricing is confirmed at time of booking with Royal Caribbean.
       </div>
-      <p class="cd-body">Single occupancy is <span class="inline-placeholder">[200% of the per-person rate, minus taxes for one guest, confirm with RC]</span>.</p>
-      <p class="cd-body">Triple and quadruple occupancy may be available depending on ship inventory and are priced at booking. Contact our agent.</p>
+      <p class="cd-body">Single occupancy is 200% of the per-person rate (pre-tax and fees).</p>
+      <p class="cd-body">Triple and quadruple occupancy may be available depending on ship inventory and are priced at booking. Call Royal Caribbean for current rates.</p>
     </section>
 
     <!-- 5.6 Booking -->
     <section class="cd-section" id="booking">
       <h2 class="cd-h">How to Book</h2>
-      <p class="cd-body">Contact our Royal Caribbean agent and reference group code <strong data-cfg="groupCode"></strong>.</p>
+      <p class="cd-body">Call Royal Caribbean Group Vacation Specialists and reference group code <strong data-cfg="groupCode"></strong>. Hours: Mon-Fri 9 AM-8 PM ET, Sat 9 AM-6 PM ET.</p>
 
       <div class="agent-block">
-        <div class="agent-row"><span class="lbl">Agent</span><span class="val" data-cfg="agent.name"></span></div>
         <div class="agent-row"><span class="lbl">Phone</span><a class="val link" id="cd-agent-phone" data-cfg="agent.phone"></a></div>
         <div class="agent-row"><span class="lbl">Email</span><a class="val link" id="cd-agent-email" data-cfg="agent.email"></a></div>
         <div class="agent-row"><span class="lbl">Group code</span><span class="val code-pill" data-cfg="groupCode"></span></div>
       </div>
 
-      <a href="tel:" id="cd-primary-cta" class="btn btn-gold-xl cta-track" data-cta="details-booking">Talk to Our Cruise Agent</a>
+      <a href="tel:" id="cd-primary-cta" class="btn btn-gold-xl cta-track" data-cta="details-booking">Book Now</a>
     </section>
 
     <!-- 5.7 Cancellation -->
     <section class="cd-section">
       <h2 class="cd-h">Cancellation Policy</h2>
-      <p class="cd-body">Deposits are typically non-refundable. All cancellation requests must be submitted in writing to our agent.</p>
+      <p class="cd-body">To avoid charges, all cancellations must be made prior to the final payment date. The schedule below outlines Royal Caribbean's current cancellation fees. Taxes and fees are excluded from penalties. Travel insurance is strongly recommended.</p>
 
       <table class="cancel-table">
         <thead>
@@ -257,8 +268,38 @@
       <h2 class="cd-h">FAQs</h2>
       <div class="faq-list" id="cd-faq-list"></div>
       <div class="faq-foot">
-        Still have questions? <a href="#booking" class="gold-text cta-track" data-cta="faq-bottom">Talk to our agent.</a>
+        Still have questions? <a href="#booking" class="gold-text cta-track" data-cta="faq-bottom">Book now.</a>
       </div>
+    </section>
+
+  </div>
+</div>
+
+<!-- =====================================================
+     ITINERARY TAB
+====================================================== -->
+<div class="tab-panel" id="tab-itinerary" role="tabpanel">
+  <div class="container container-narrow">
+
+    <header class="details-header">
+      <div class="eyebrow center">Itinerary</div>
+      <h1 class="details-title">Day-by-Day</h1>
+      <div class="divider"></div>
+    </header>
+
+    <section class="cd-section coming-soon">
+      <div class="coming-soon-eyebrow">Coming Soon</div>
+      <h2 class="cd-h">Full Itinerary On The Way</h2>
+      <p class="cd-body">The full day-by-day itinerary, including port times and onboard activity highlights, will post here as soon as Royal Caribbean finalizes the manifest.</p>
+
+      <p class="cd-body">In the meantime, the broad strokes:</p>
+      <ul class="bullet-list pos">
+        <li>Depart <strong data-cfg="departurePort"></strong> &mdash; <strong data-cfg="sailDateStart"></strong></li>
+        <li>3 nights at sea to Perfect Day at CocoCay and the Bahamas</li>
+        <li>Return to <strong data-cfg="departurePort"></strong> &mdash; <strong data-cfg="sailDateEnd"></strong></li>
+      </ul>
+
+      <p class="cd-body">Want to lock in your stateroom before the manifest drops? <a href="#booking" class="gold-text cta-track" data-cta="itinerary-cta">Book Now</a>.</p>
     </section>
 
   </div>
@@ -272,13 +313,15 @@
     <span>|</span>
     <a href="#" data-tab-link="details">Cruise Details</a>
     <span>|</span>
-    <a href="#booking">Contact Agent</a>
+    <a href="#" data-tab-link="itinerary">Itinerary</a>
+    <span>|</span>
+    <a href="#booking">Book Now</a>
   </div>
   <div class="copyright">&copy; 2026 Windsor Forest Takeover Cruise. All bookings through Royal Caribbean.</div>
 </footer>
 
 <!-- Sticky Mobile CTA -->
-<a href="#booking" class="sticky-cta cta-track" data-cta="sticky">Talk to Cruise Agent &rarr;</a>
+<a href="#booking" class="sticky-cta cta-track" data-cta="sticky">Book Now &rarr;</a>
 
 <script src="config.js"></script>
 <script src="script.js"></script>
