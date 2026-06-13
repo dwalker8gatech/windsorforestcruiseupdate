@@ -889,6 +889,14 @@ img { max-width: 100%; display: block; }
   text-transform: uppercase;
   color: var(--text-dim);
 }
+.photo-credits {
+  font-size: 10px;
+  color: var(--text-dim);
+  font-style: italic;
+  margin-bottom: 10px;
+  letter-spacing: 0.02em;
+}
+.photo-credits:empty { display: none; }
 
 /* ===== Sticky Mobile CTA ===== */
 .sticky-cta {

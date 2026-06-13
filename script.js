@@ -79,6 +79,14 @@
     }
   });
 
+  // ----- 3c. Photo credits (footer) -----
+  const creditsEl = document.getElementById('photo-credits');
+  if (creditsEl && Array.isArray(cfg.photoCredits) && cfg.photoCredits.length) {
+    creditsEl.innerHTML =
+      'Photography: ' +
+      cfg.photoCredits.map(c => escape(c)).join(' &nbsp;&bull;&nbsp; ');
+  }
+
   // ----- 4. What's Included / Not Included -----
   function renderBullets(elId, items) {
     const ul = document.getElementById(elId);

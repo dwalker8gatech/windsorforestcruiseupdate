@@ -118,9 +118,14 @@ window.cruiseConfig = {
   // ----- Images (drop files in /assets and point keys here) -----
   // Blank string = feature OFF (default styling applies). See assets/README.md.
   images: {
-    hero:                 "",  // e.g. "assets/hero-utopia.jpg" — Utopia of the Seas hero background
-    amenityDining:        "",  // e.g. "assets/amenity-dining.jpg"
-    amenityPools:         "",  // e.g. "assets/amenity-pools.jpg"
-    amenityEntertainment: ""   // e.g. "assets/amenity-entertainment.jpg"
-  }
+    hero:                 "assets/hero-utopia.jpg",
+    amenityDining:        "assets/amenity-dining.avif",
+    amenityPools:         "assets/amenity-pools.jpg",
+    amenityEntertainment: "assets/amenity-entertainment.jpg"
+  },
+
+  // ----- Photo credits (rendered as a small footer line) -----
+  photoCredits: [
+    "Coastal Kitchen on Utopia of the Seas — photo by Chris Gray Faust"
+  ]
 };
