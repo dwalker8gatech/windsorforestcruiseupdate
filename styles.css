@@ -261,6 +261,16 @@ img { max-width: 100%; display: block; }
   opacity: 0.55;
   pointer-events: none;
 }
+
+/* Hero with a background image (Utopia of the Seas).
+   Activated when JS sets --hero-bg-url and adds .hero-has-bg. */
+.hero.hero-has-bg {
+  background:
+    linear-gradient(180deg, rgba(12, 64, 30, 0.7) 0%, rgba(12, 64, 30, 0.92) 100%),
+    var(--hero-bg-url) center / cover no-repeat,
+    var(--bg);
+}
+.hero.hero-has-bg::before { opacity: 0.35; }
 .hero-inner { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
 .eyebrow {
   font-size: 11px;
@@ -467,6 +477,11 @@ img { max-width: 100%; display: block; }
   border-radius: 12px;
   padding: 24px 22px;
   transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
 }
 .amenity:hover {
   border-color: var(--gold);
@@ -478,8 +493,11 @@ img { max-width: 100%; display: block; }
   height: 32px;
   color: var(--gold);
   margin-bottom: 12px;
+  position: relative;
+  z-index: 2;
 }
 .amenity-icon svg { width: 100%; height: 100%; }
+.amenity-body { position: relative; z-index: 2; margin-top: auto; }
 .amenity h4 {
   font-family: var(--serif);
   font-weight: 700;
@@ -488,6 +506,31 @@ img { max-width: 100%; display: block; }
   margin-bottom: 6px;
 }
 .amenity p { font-size: 13.5px; color: var(--text-muted); line-height: 1.6; }
+
+/* Amenity with background image (activated by JS when config provides) */
+.amenity[data-has-bg="true"] {
+  background-size: cover;
+  background-position: center;
+  padding: 22px;
+  border-color: var(--border-strong);
+}
+.amenity[data-has-bg="true"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(8, 40, 21, 0.3) 0%, rgba(8, 40, 21, 0.45) 55%, rgba(8, 40, 21, 0.92) 100%);
+  z-index: 1;
+}
+.amenity[data-has-bg="true"] .amenity-body {
+  background: rgba(8, 40, 21, 0.78);
+  padding: 14px 16px;
+  border-radius: 8px;
+  margin: 0 -4px -4px;
+  backdrop-filter: blur(2px);
+}
+.amenity[data-has-bg="true"] h4 { color: var(--text); }
+.amenity[data-has-bg="true"] p  { color: var(--text-soft); }
 .learn-more-row { text-align: center; margin-top: 36px; }
 
 /* ===== Closing ===== */

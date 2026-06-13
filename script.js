@@ -57,6 +57,28 @@
       '<iframe src="' + escape(cfg.promoVideoEmbedUrl) + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
   }
 
+  // ----- 3b. Background images (hero + amenity cards) -----
+  const imgs = cfg.images || {};
+  if (imgs.hero) {
+    const hero = document.querySelector('.hero');
+    if (hero) {
+      hero.classList.add('hero-has-bg');
+      hero.style.setProperty('--hero-bg-url', `url('${imgs.hero}')`);
+    }
+  }
+  const amenityMap = {
+    dining:        imgs.amenityDining,
+    pools:         imgs.amenityPools,
+    entertainment: imgs.amenityEntertainment
+  };
+  document.querySelectorAll('.amenity[data-amenity]').forEach(card => {
+    const url = amenityMap[card.dataset.amenity];
+    if (url) {
+      card.style.backgroundImage = `url('${url}')`;
+      card.setAttribute('data-has-bg', 'true');
+    }
+  });
+
   // ----- 4. What's Included / Not Included -----
   function renderBullets(elId, items) {
     const ul = document.getElementById(elId);
