@@ -106,8 +106,8 @@
     priceBody.innerHTML = cfg.staterooms.map(s => {
       const phClass = isPlaceholder(s.priceFrom) ? ' inline-placeholder' : '';
       const priceCell = isPlaceholder(s.priceFrom)
-        ? `<span class="inline-placeholder">$${escape(s.priceFrom)}</span>`
-        : `<span class="price-from-label">From</span><span class="price-from">$${escape(s.priceFrom)}</span>`;
+        ? `<span class="inline-placeholder">${escape(s.priceFrom)}</span>`
+        : `<span class="price-from-label">From</span><span class="price-from">${escape(s.priceFrom)}</span>`;
       return `
         <tr>
           <td data-label="Stateroom" class="price-tier">${escape(s.tier)}</td>
