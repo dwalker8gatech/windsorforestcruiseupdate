@@ -581,10 +581,10 @@ img { max-width: 100%; display: block; }
   background-position: center 78%;
 }
 
-/* hero-utopia.jpg ship sits in the upper third — pull the crop
-   up so the ship lands in the visible card area. */
+/* hero-utopia.jpg is portrait with the ship near the top —
+   pull the crop almost to the top so the ship lands in view. */
 .card[data-experience="ship"][data-has-bg="true"] {
-  background-position: center 28%;
+  background-position: center 12%;
 }
 
 /* ===== Amenities ===== */
