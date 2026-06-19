@@ -25,7 +25,7 @@ window.cruiseConfig = {
     phone: "1-800-465-3595",
     email: "cogroupsupport@rccl.com"
   },
-  groupCode: "[GROUP_CODE — provided day of release]",
+  groupCode: "9822575",
 
   // ----- Deposit & payment -----
   depositPerStateroom: "$200",
