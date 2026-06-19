@@ -295,10 +295,12 @@ img { max-width: 100%; display: block; }
 }
 .hero-sub {
   font-family: var(--serif);
-  font-size: 19px;
-  color: var(--text-soft);
+  font-size: 26px;
+  color: var(--text);
   margin-bottom: 36px;
   font-style: italic;
+  font-weight: 500;
+  text-shadow: 0 1px 12px rgba(8, 40, 21, 0.55);
 }
 .hero-foot {
   margin-top: 22px;
