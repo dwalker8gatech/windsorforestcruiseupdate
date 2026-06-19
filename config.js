@@ -123,7 +123,7 @@ window.cruiseConfig = {
     amenityDining:         "assets/amenity-dining.avif",
     amenityPools:          "assets/amenity-pools.jpg",
     amenityEntertainment:  "assets/amenity-entertainment.jpg",
-    experienceCommunity:   "assets/community.jpg",
+    experienceCommunity:   "assets/community-2.jpg",
     experienceDestination: "assets/destination.jpg",
     experienceShip:        "assets/hero-utopia.jpg"
   },
