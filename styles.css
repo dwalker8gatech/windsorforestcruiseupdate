@@ -935,18 +935,59 @@ img { max-width: 100%; display: block; }
 }
 .agent-row .val.link { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; }
 .agent-row .val.code-pill {
-  display: inline-block;
-  background: var(--bg-deep);
-  border: 1px dashed var(--gold);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(236, 242, 189, 0.1);
+  border: 1px solid rgba(236, 242, 189, 0.3);
   color: var(--gold);
-  padding: 6px 14px;
-  border-radius: 6px;
-  font-family: var(--serif);
+  padding: 9px 16px 9px 18px;
+  border-radius: 8px;
+  font-family: var(--sans);
   font-weight: 700;
-  letter-spacing: 0.08em;
+  font-size: 17px;
+  letter-spacing: 0.14em;
   width: max-content;
   max-width: 100%;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+  font-style: normal;
 }
+.agent-row .val.code-pill:hover {
+  background: rgba(236, 242, 189, 0.18);
+  border-color: rgba(236, 242, 189, 0.5);
+}
+.agent-row .val.code-pill:active { transform: scale(0.98); }
+.agent-row .val.code-pill:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+.code-pill-icon {
+  display: inline-flex;
+  align-items: center;
+  opacity: 0.65;
+  transition: opacity 0.2s ease;
+}
+.code-pill-icon svg { width: 15px; height: 15px; }
+.agent-row .val.code-pill:hover .code-pill-icon { opacity: 1; }
+.code-pill-feedback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(236, 242, 189, 0.95);
+  color: var(--bg);
+  border-radius: inherit;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease;
+}
+.agent-row .val.code-pill.copied .code-pill-feedback { opacity: 1; }
 
 /* ===== FAQ ===== */
 .faq-list { margin-top: 4px; }

@@ -27,6 +27,14 @@ Anything still wrapped in `[SQUARE_BRACKETS]` renders as a visible yellow-highli
 
 Pushes to `main` auto-deploy.
 
+## Deploy to Netlify
+
+1. Connect this repo on [app.netlify.com](https://app.netlify.com)
+2. Netlify reads [`netlify.toml`](./netlify.toml) automatically — publish dir = `.`, no build command
+3. Deploy
+
+Pushes to `main` auto-deploy. The config also long-caches `/assets/*` and sets conservative security headers.
+
 ## Local preview
 
 Open `index.html` directly in a browser, or run a simple static server:

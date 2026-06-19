@@ -115,6 +115,29 @@
     }
   });
 
+  // ----- 3d. Click-to-copy on the group-code pill -----
+  document.querySelectorAll('[data-copy-code]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const valEl = btn.querySelector('.code-pill-value');
+      const code = valEl ? valEl.textContent.trim() : '';
+      if (!code || /^\[/.test(code)) return; // skip placeholders
+      const done = () => {
+        btn.classList.add('copied');
+        setTimeout(() => btn.classList.remove('copied'), 1400);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code).then(done).catch(() => {
+          // fallback: select the text so user can copy manually
+          const range = document.createRange();
+          range.selectNodeContents(valEl);
+          const sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(range);
+        });
+      }
+    });
+  });
+
   // ----- 3c. Photo credits (footer) -----
   const creditsEl = document.getElementById('photo-credits');
   if (creditsEl && Array.isArray(cfg.photoCredits) && cfg.photoCredits.length) {
