@@ -262,15 +262,15 @@ img { max-width: 100%; display: block; }
   pointer-events: none;
 }
 
-/* Hero with a background image (Utopia of the Seas).
-   Activated when JS sets --hero-bg-url and adds .hero-has-bg. */
+/* Hero with a background image. Activated when JS sets
+   --hero-bg-url and adds .hero-has-bg. */
 .hero.hero-has-bg {
   background:
-    linear-gradient(180deg, rgba(12, 64, 30, 0.7) 0%, rgba(12, 64, 30, 0.92) 100%),
+    linear-gradient(180deg, rgba(12, 64, 30, 0.45) 0%, rgba(12, 64, 30, 0.6) 55%, rgba(12, 64, 30, 0.88) 100%),
     var(--hero-bg-url) center / cover no-repeat,
     var(--bg);
 }
-.hero.hero-has-bg::before { opacity: 0.35; }
+.hero.hero-has-bg::before { opacity: 0.25; }
 .hero-inner { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
 .eyebrow {
   font-size: 11px;
