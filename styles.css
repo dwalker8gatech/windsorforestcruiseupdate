@@ -575,6 +575,12 @@ img { max-width: 100%; display: block; }
   color: var(--text-soft);
 }
 
+/* destination.jpg is portrait orientation — sky was dominating
+   the center crop. Shift the focal point lower so the beach shows. */
+.card[data-experience="destination"][data-has-bg="true"] {
+  background-position: center 78%;
+}
+
 /* ===== Amenities ===== */
 .amenity-grid { gap: 20px; }
 .amenity {
