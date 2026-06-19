@@ -35,9 +35,9 @@ window.cruiseConfig = {
   // ----- Pricing (per person, double occupancy) -----
   pricingAsOfDate: "June 13, 2026",
   staterooms: [
-    { tier: "Interior",     priceFrom: "$904"   },
-    { tier: "Balcony",      priceFrom: "$1,047" },
-    { tier: "Outside View", priceFrom: "$1,054" }
+    { tier: "Interior",          priceFrom: "$904"   },
+    { tier: "Boardwalk Balcony", priceFrom: "$1,047" },
+    { tier: "Ocean Balcony",     priceFrom: "$1,054" }
   ],
   taxesAndFees: "$107.98 per person",
   gratuities: "$55.50 per person ($63 for suites)",
