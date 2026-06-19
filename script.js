@@ -50,11 +50,35 @@
     if (digits) primaryCta.setAttribute('href', 'tel:' + digits);
   }
 
-  // ----- 3. Promo video embed -----
+  // ----- 3. Promo video (facade pattern: poster + custom play
+  //          button; iframe mounts on click with autoplay=1) -----
   const videoWrap = document.getElementById('video-wrap');
+  function extractYouTubeId(url) {
+    const m = String(url).match(/\/embed\/([A-Za-z0-9_-]+)/);
+    return m ? m[1] : '';
+  }
   if (videoWrap && cfg.promoVideoEmbedUrl) {
-    videoWrap.innerHTML =
-      '<iframe src="' + escape(cfg.promoVideoEmbedUrl) + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+    const id = extractYouTubeId(cfg.promoVideoEmbedUrl);
+    if (id) {
+      const poster = 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg';
+      videoWrap.innerHTML =
+        '<button class="video-facade" type="button" aria-label="Play promo video">' +
+          '<img class="vp-poster" src="' + escape(poster) + '" alt="" loading="lazy" />' +
+          '<span class="vp-overlay" aria-hidden="true"></span>' +
+          '<span class="vp-play" aria-hidden="true">' +
+            '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>' +
+          '</span>' +
+        '</button>';
+      const btn = videoWrap.querySelector('.video-facade');
+      btn.addEventListener('click', () => {
+        const sep = cfg.promoVideoEmbedUrl.indexOf('?') > -1 ? '&' : '?';
+        const url = cfg.promoVideoEmbedUrl + sep + 'autoplay=1';
+        videoWrap.innerHTML =
+          '<iframe src="' + escape(url) + '" frameborder="0" ' +
+          'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ' +
+          'allowfullscreen></iframe>';
+      }, { once: true });
+    }
   }
 
   // ----- 3b. Background images (hero + amenity cards) -----

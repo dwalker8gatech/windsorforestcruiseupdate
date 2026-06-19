@@ -7,7 +7,8 @@ window.cruiseConfig = {
   // ----- Group identity -----
   groupName: "Windsor Forest Takeover Cruise",
   schoolName: "Windsor Forest",
-  groupIntroCopy: "[GROUP_INTRO_COPY — one or two lines from Doug's voice]",
+  organizedBy: "Your Fellow Windsor Forest Alumni",
+  groupIntroCopy: "Creating more opportunities for Knights alumni to build deeper relationships with one another.",
 
   // ----- Cruise basics (per RC group agreement, doc 5452193) -----
   ship: "Utopia of the Seas",
@@ -16,7 +17,7 @@ window.cruiseConfig = {
   sailDateStartISO: "2027-06-18T00:00:00",
   sailDateEnd: "June 21, 2027",
   departurePort: "Port Canaveral, FL",
-  destinations: "3 Night Perfect Day at CocoCay & Bahamas",
+  destinations: "Nassau Bahamas & CocoCay",
 
   // ----- Booking contact (Royal Caribbean Group Vacation Specialists) -----
   // No dedicated agent name. Calls route through the group line.
@@ -118,7 +119,7 @@ window.cruiseConfig = {
   // ----- Images (drop files in /assets and point keys here) -----
   // Blank string = feature OFF (default styling applies). See assets/README.md.
   images: {
-    hero:                 "assets/hero-utopia.jpg",
+    hero:                 "assets/hero-bahamas.jpg",
     amenityDining:        "assets/amenity-dining.avif",
     amenityPools:         "assets/amenity-pools.jpg",
     amenityEntertainment: "assets/amenity-entertainment.jpg"
