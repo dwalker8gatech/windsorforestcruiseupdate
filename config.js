@@ -17,7 +17,7 @@ window.cruiseConfig = {
   sailDateStartISO: "2027-06-18T00:00:00",
   sailDateEnd: "June 21, 2027",
   departurePort: "Port Canaveral, FL",
-  destinations: "Nassau Bahamas & CocoCay",
+  destinations: "Nassau & CocoCay Bahamas",
 
   // ----- Booking contact (Royal Caribbean Group Vacation Specialists) -----
   // No dedicated agent name. Calls route through the group line.
@@ -119,14 +119,16 @@ window.cruiseConfig = {
   // ----- Images (drop files in /assets and point keys here) -----
   // Blank string = feature OFF (default styling applies). See assets/README.md.
   images: {
-    hero:                 "assets/hero-bahamas.jpg",
-    amenityDining:        "assets/amenity-dining.avif",
-    amenityPools:         "assets/amenity-pools.jpg",
-    amenityEntertainment: "assets/amenity-entertainment.jpg"
+    hero:                  "assets/hero-bahamas.jpg",
+    amenityDining:         "assets/amenity-dining.avif",
+    amenityPools:          "assets/amenity-pools.jpg",
+    amenityEntertainment:  "assets/amenity-entertainment.jpg",
+    experienceCommunity:   "assets/community.jpg",
+    experienceDestination: "assets/destination.jpg",
+    experienceShip:        "assets/hero-utopia.jpg"
   },
 
   // ----- Photo credits (rendered as a small footer line) -----
-  photoCredits: [
-    "Coastal Kitchen on Utopia of the Seas — photo by Chris Gray Faust"
-  ]
+  // Empty array hides the footer credit line entirely.
+  photoCredits: []
 };

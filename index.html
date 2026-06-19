@@ -84,28 +84,34 @@
       <div class="divider"></div>
 
       <div class="grid-3">
-        <div class="card">
+        <div class="card" data-experience="community">
           <div class="card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           </div>
-          <h3 class="card-title">The Community</h3>
-          <p class="card-text">Sail alongside the <span data-cfg="groupName"></span> community. Reconnect with familiar faces and meet new ones during group dinners, mixers, and shared excursions.</p>
+          <div class="card-body">
+            <h3 class="card-title">The Community</h3>
+            <p class="card-text">Sail alongside your fellow Windsor Forest Alumni.</p>
+          </div>
         </div>
 
-        <div class="card">
+        <div class="card" data-experience="destination">
           <div class="card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 0 20"/><path d="M12 2a15 15 0 0 0 0 20"/></svg>
           </div>
-          <h3 class="card-title">The Destination</h3>
-          <p class="card-text">Sailing to <span data-cfg="destinations"></span>. Days of beaches, ports of call, and signature Royal Caribbean amenities.</p>
+          <div class="card-body">
+            <h3 class="card-title">The Destination</h3>
+            <p class="card-text">Nassau and CocoCay Bahamas. Days of beaches, ports of call, and signature Royal Caribbean amenities.</p>
+          </div>
         </div>
 
-        <div class="card">
+        <div class="card" data-experience="ship">
           <div class="card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6"/><path d="M5 13l7-5 7 5"/><path d="M3 18s2 2 5 2 4-2 7-2 4 2 6 2"/><path d="M5 13v5"/><path d="M19 13v5"/></svg>
           </div>
-          <h3 class="card-title">The Ship</h3>
-          <p class="card-text">Sailing aboard the <span data-cfg="ship"></span>, one of Royal Caribbean's flagship vessels. World-class dining, pools, entertainment, and amenities.</p>
+          <div class="card-body">
+            <h3 class="card-title">The Ship</h3>
+            <p class="card-text">Sailing aboard the <span data-cfg="ship"></span>, one of Royal Caribbean's flagship vessels. World-class dining, pools, entertainment, and amenities.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -118,11 +124,11 @@
       <h2 class="section-title"><span data-cfg="ship"></span></h2>
       <div class="divider"></div>
       <p class="section-lead">
-        From specialty restaurants and Broadway-style shows to multi-deck water features and signature lounges, every day at sea brings something new.
+        The Windsor Forest Knights are taking over Royal Caribbean's <span data-cfg="ship"></span>. Five days of world-class dining, pools, and entertainment at sea.
       </p>
 
       <div class="grid-3 amenity-grid">
-        <div class="amenity" data-amenity="dining">
+        <a class="amenity" data-amenity="dining" href="https://www.royalcaribbean.com/utopia-of-the-seas/restaurants/" target="_blank" rel="noopener noreferrer">
           <div class="amenity-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><line x1="7" y1="2" x2="7" y2="22"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3v7"/></svg>
           </div>
@@ -130,8 +136,8 @@
             <h4>Dining</h4>
             <p>Main dining rooms, specialty restaurants, and casual eateries.</p>
           </div>
-        </div>
-        <div class="amenity" data-amenity="pools">
+        </a>
+        <a class="amenity" data-amenity="pools" href="https://www.royalcaribbean.com/utopia-of-the-seas/pools/" target="_blank" rel="noopener noreferrer">
           <div class="amenity-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>
           </div>
@@ -139,8 +145,8 @@
             <h4>Pools &amp; Decks</h4>
             <p>Multiple pool decks, hot tubs, and signature Royal Caribbean water features.</p>
           </div>
-        </div>
-        <div class="amenity" data-amenity="entertainment">
+        </a>
+        <a class="amenity" data-amenity="entertainment" href="https://www.royalcaribbean.com/utopia-of-the-seas/entertainment/" target="_blank" rel="noopener noreferrer">
           <div class="amenity-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
           </div>
@@ -148,7 +154,7 @@
             <h4>Entertainment</h4>
             <p>Broadway-style productions, live music, comedy, and nightly programming.</p>
           </div>
-        </div>
+        </a>
       </div>
 
       <div class="learn-more-row">
@@ -162,7 +168,7 @@
     <div class="container">
       <div class="quote-mark gold-text">&#10077;</div>
       <p class="closing-quote">
-        Reconnect, celebrate, and set sail with the <span data-cfg="groupName"></span>.<br />
+        Reconnect, celebrate, and set sail on the Windsor Forest Takeover Cruise.<br />
         Sail dates, pricing, and booking details on the next tab.
       </p>
     </div>
@@ -274,7 +280,7 @@
       <h2 class="cd-h">FAQs</h2>
       <div class="faq-list" id="cd-faq-list"></div>
       <div class="faq-foot">
-        Still have questions? <a href="#booking" class="gold-text cta-track" data-cta="faq-bottom">Book now.</a>
+        Still have questions? <a href="#booking" class="gold-text cta-track" data-cta="faq-bottom">Contact Royal Caribbean.</a>
       </div>
     </section>
 

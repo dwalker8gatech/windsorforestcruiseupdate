@@ -102,6 +102,18 @@
       card.setAttribute('data-has-bg', 'true');
     }
   });
+  const experienceMap = {
+    community:   imgs.experienceCommunity,
+    destination: imgs.experienceDestination,
+    ship:        imgs.experienceShip
+  };
+  document.querySelectorAll('.card[data-experience]').forEach(card => {
+    const url = experienceMap[card.dataset.experience];
+    if (url) {
+      card.style.backgroundImage = `url('${url}')`;
+      card.setAttribute('data-has-bg', 'true');
+    }
+  });
 
   // ----- 3c. Photo credits (footer) -----
   const creditsEl = document.getElementById('photo-credits');
