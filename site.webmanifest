@@ -1,0 +1,13 @@
+{
+  "name": "Windsor Forest Takeover Cruise",
+  "short_name": "WF Cruise",
+  "description": "Windsor Forest alumni cruise aboard Royal Caribbean's Utopia of the Seas, June 2027.",
+  "start_url": ".",
+  "display": "browser",
+  "background_color": "#0C401E",
+  "theme_color": "#0C401E",
+  "icons": [
+    { "src": "assets/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
