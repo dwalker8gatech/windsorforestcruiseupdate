@@ -251,7 +251,9 @@
     <!-- 5.6 Booking -->
     <section class="cd-section" id="booking">
       <h2 class="cd-h">How to Book</h2>
-      <p class="cd-body">Call Royal Caribbean Group Vacation Specialists and reference group code <strong data-cfg="groupCode"></strong>. Hours: Mon-Fri 9 AM-8 PM ET, Sat 9 AM-6 PM ET.</p>
+      <!-- Two variants; script.js shows one based on whether groupCode is a real code. -->
+      <p class="cd-body" data-code-known hidden>Call Royal Caribbean Group Vacation Specialists and reference group code <strong data-cfg="groupCode"></strong>. Hours: Mon-Fri 9 AM-8 PM ET, Sat 9 AM-6 PM ET.</p>
+      <p class="cd-body" data-code-pending hidden>Call Royal Caribbean Group Vacation Specialists and ask for the <strong data-cfg="groupName"></strong> group. The group booking code will be posted here once it's confirmed. Hours: Mon-Fri 9 AM-8 PM ET, Sat 9 AM-6 PM ET.</p>
 
       <div class="agent-block">
         <div class="agent-row"><span class="lbl">Phone</span><a class="val link" id="cd-agent-phone" data-cfg="agent.phone"></a></div>

@@ -25,7 +25,10 @@ window.cruiseConfig = {
     phone: "1-800-465-3595",
     email: "cogroupsupport@rccl.com"
   },
-  groupCode: "9822575",
+  // Not a real code yet. Any value without a digit is treated as "pending":
+  // the copy pill goes inert and the booking copy switches to the
+  // ask-for-the-group-by-name variant. Drop the real code back in to restore.
+  groupCode: "Coming soon",
 
   // ----- Deposit & payment -----
   depositPerStateroom: "$200",
@@ -77,7 +80,7 @@ window.cruiseConfig = {
   faq: [
     {
       q: "How do I book?",
-      a: "Call Royal Caribbean Group Vacation Specialists at 1-800-465-3595 (Mon-Fri 9 AM to 8 PM ET, Sat 9 AM to 6 PM ET) or email cogroupsupport@rccl.com. Reference the group code so your booking is credited to the Windsor Forest Takeover Cruise group."
+      a: "Call Royal Caribbean Group Vacation Specialists at 1-800-465-3595 (Mon-Fri 9 AM to 8 PM ET, Sat 9 AM to 6 PM ET) or email cogroupsupport@rccl.com. Ask for the Windsor Forest Takeover Cruise group so your booking is credited to it. The group booking code will be posted here once it's confirmed."
     },
     {
       q: "How much is the deposit?",

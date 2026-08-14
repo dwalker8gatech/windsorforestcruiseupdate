@@ -18,6 +18,12 @@
   function isPlaceholder(val) {
     return typeof val === 'string' && /\[[^\]]+\]/.test(val);
   }
+  // A real RC group code contains digits. Anything else ("Coming soon",
+  // a [BRACKETED] placeholder, empty) counts as pending.
+  function hasRealCode() {
+    const c = cfg.groupCode;
+    return typeof c === 'string' && !isPlaceholder(c) && /\d/.test(c);
+  }
   function escape(s) {
     return String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
   }
@@ -41,9 +47,28 @@
   const emailEl = document.getElementById('cd-agent-email');
   if (emailEl && cfg.agent && cfg.agent.email && cfg.agent.email.indexOf('@') > -1) {
     const subject = encodeURIComponent('Windsor Forest Takeover Cruise inquiry');
-    const body = encodeURIComponent('Group code: ' + (cfg.groupCode || ''));
+    // Only pre-fill the code when there is one. Otherwise name the group.
+    const body = encodeURIComponent(
+      hasRealCode()
+        ? 'Group code: ' + cfg.groupCode
+        : 'Group: ' + (cfg.groupName || '')
+    );
     emailEl.setAttribute('href', 'mailto:' + cfg.agent.email + '?subject=' + subject + '&body=' + body);
   }
+  // ----- 2b. Group-code state: real code vs "coming soon" -----
+  // Shows the matching booking sentence and makes the copy pill inert
+  // when there is nothing worth copying.
+  const codeKnown = hasRealCode();
+  document.querySelectorAll('[data-code-known]').forEach(el => { el.hidden = !codeKnown; });
+  document.querySelectorAll('[data-code-pending]').forEach(el => { el.hidden = codeKnown; });
+  if (!codeKnown) {
+    document.querySelectorAll('[data-copy-code]').forEach(btn => {
+      btn.classList.add('pending');
+      btn.disabled = true;
+      btn.setAttribute('aria-label', 'Group booking code coming soon');
+    });
+  }
+
   const primaryCta = document.getElementById('cd-primary-cta');
   if (primaryCta && cfg.agent && cfg.agent.phone && !isPlaceholder(cfg.agent.phone)) {
     const digits = String(cfg.agent.phone).replace(/[^\d+]/g, '');
@@ -120,7 +145,7 @@
     btn.addEventListener('click', () => {
       const valEl = btn.querySelector('.code-pill-value');
       const code = valEl ? valEl.textContent.trim() : '';
-      if (!code || /^\[/.test(code)) return; // skip placeholders
+      if (!code || !hasRealCode()) return; // nothing worth copying yet
       const done = () => {
         btn.classList.add('copied');
         setTimeout(() => btn.classList.remove('copied'), 1400);

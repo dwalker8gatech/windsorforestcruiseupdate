@@ -30,6 +30,9 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* Guard the [hidden] attribute against class rules that set display. */
+[hidden] { display: none !important; }
+
 html, body {
   background: var(--bg);
   color: var(--text);
@@ -963,6 +966,23 @@ img { max-width: 100%; display: block; }
   outline: 2px solid var(--gold);
   outline-offset: 3px;
 }
+/* Pending state — no code issued yet. Inert, muted, no copy affordance. */
+.agent-row .val.code-pill.pending {
+  background: rgba(236, 242, 189, 0.05);
+  border-color: rgba(236, 242, 189, 0.16);
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  cursor: default;
+}
+.agent-row .val.code-pill.pending:hover {
+  background: rgba(236, 242, 189, 0.05);
+  border-color: rgba(236, 242, 189, 0.16);
+}
+.agent-row .val.code-pill.pending:active { transform: none; }
+.agent-row .val.code-pill.pending .code-pill-icon { display: none; }
+
 .code-pill-icon {
   display: inline-flex;
   align-items: center;
