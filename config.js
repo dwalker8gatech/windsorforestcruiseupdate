@@ -88,7 +88,7 @@ window.cruiseConfig = {
     },
     {
       q: "When is final payment due?",
-      a: "Final payment is due no later than April 4, 2027. Any balance unpaid after this date may result in cancellation of all or part of the booking."
+      a: "Final payment is due no later than April 2027. Any balance unpaid after this date may result in cancellation of all or part of the booking."
     },
     {
       q: "What is the cancellation policy?",
