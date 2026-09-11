@@ -84,7 +84,7 @@ window.cruiseConfig = {
     },
     {
       q: "How much is the deposit?",
-      a: "$200 per stateroom. Deposits and full legal names are due by July 19, 2026 to lock in group pricing. Deposit amounts for suites may vary — refer to your individual booking invoice."
+      a: "$200 per stateroom. Deposits and full legal names are due by October 31, 2026 to lock in group pricing. Deposit amounts for suites may vary — refer to your individual booking invoice."
     },
     {
       q: "When is final payment due?",
