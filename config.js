@@ -5,7 +5,7 @@
 // =============================================================
 window.cruiseConfig = {
   // ----- Group identity -----
-  groupName: "Windsor Forest Takeover Cruise",
+  groupName: "The Windsor Forest Takeover Cruise",
   schoolName: "Windsor Forest",
   organizedBy: "Your Fellow Windsor Forest Alumni",
   groupIntroCopy: "Creating more opportunities for Knights alumni to build deeper relationships with one another.",
