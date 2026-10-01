@@ -28,19 +28,19 @@ window.cruiseConfig = {
   // Not a real code yet. Any value without a digit is treated as "pending":
   // the copy pill goes inert and the booking copy switches to the
   // ask-for-the-group-by-name variant. Drop the real code back in to restore.
-  groupCode: "Coming soon",
+  groupCode: "9152889",
 
   // ----- Deposit & payment -----
   depositPerStateroom: "$200",
-  depositDueDate: "July 19, 2026",
+  depositDueDate: "October 31, 2026",
   finalPaymentDueDate: "April 4, 2027",
 
   // ----- Pricing (per person, double occupancy) -----
-  pricingAsOfDate: "June 13, 2026",
+  pricingAsOfDate: "October 1, 2026",
   staterooms: [
-    { tier: "Interior",          priceFrom: "$904"   },
-    { tier: "Boardwalk Balcony", priceFrom: "$1,047" },
-    { tier: "Ocean Balcony",     priceFrom: "$1,054" }
+    { tier: "Interior",          priceFrom: "$861"   },
+    { tier: "Central Park Balcony", priceFrom: "$1,193" },
+    { tier: "Ocean Balcony",     priceFrom: "$1,223" }
   ],
   taxesAndFees: "$107.98 per person",
   gratuities: "$55.50 per person ($63 for suites)",
